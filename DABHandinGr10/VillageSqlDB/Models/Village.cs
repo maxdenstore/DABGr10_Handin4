@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DABHandinGr10
+namespace VillageSqlDB.Models
 {
-    public class Class1
+    public class Village
     {
     }
 }
