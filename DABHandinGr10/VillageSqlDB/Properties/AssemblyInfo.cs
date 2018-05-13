@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DABHandinGr10")]
+[assembly: AssemblyTitle("VillageSqlDB")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DABHandinGr10")]
+[assembly: AssemblyProduct("VillageSqlDB")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2d1eefad-3043-4651-b98d-1b67ef9ebf68")]
+[assembly: Guid("807e1b8f-1276-4274-a41a-0e732d03c37a")]
 
 // Version information for an assembly consists of the following four values:
 //

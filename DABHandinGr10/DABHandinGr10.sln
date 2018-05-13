@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillageSqlDB", "DABHandinGr10\VillageSqlDB.csproj", "{2D1EEFAD-3043-4651-B98D-1B67EF9EBF68}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProsumerDocDB", "ProsumerDocDB\ProsumerDocDB.csproj", "{1601115C-9F1B-4B02-9B5A-8E940E8F0948}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGT_DocDB", "SGT_DocDB\SGT_DocDB.csproj", "{0D189879-48EF-4FA9-B26E-521E8D923330}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillageSqlDB", "VillageSqlDB\VillageSqlDB.csproj", "{807E1B8F-1276-4274-A41A-0E732D03C37A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2D1EEFAD-3043-4651-B98D-1B67EF9EBF68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D1EEFAD-3043-4651-B98D-1B67EF9EBF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D1EEFAD-3043-4651-B98D-1B67EF9EBF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D1EEFAD-3043-4651-B98D-1B67EF9EBF68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1601115C-9F1B-4B02-9B5A-8E940E8F0948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1601115C-9F1B-4B02-9B5A-8E940E8F0948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1601115C-9F1B-4B02-9B5A-8E940E8F0948}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{0D189879-48EF-4FA9-B26E-521E8D923330}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D189879-48EF-4FA9-B26E-521E8D923330}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D189879-48EF-4FA9-B26E-521E8D923330}.Release|Any CPU.Build.0 = Release|Any CPU
+		{807E1B8F-1276-4274-A41A-0E732D03C37A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807E1B8F-1276-4274-A41A-0E732D03C37A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807E1B8F-1276-4274-A41A-0E732D03C37A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807E1B8F-1276-4274-A41A-0E732D03C37A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
