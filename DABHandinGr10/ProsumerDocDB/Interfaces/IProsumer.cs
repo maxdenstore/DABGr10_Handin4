@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace ProsumerDocDB.Interfaces
 {
-    interface IProsumer
+    public interface IProsumer
     {
+        int smartmeter { get; set; }
+        int copperId { get; set; }
+
+        int wallet { get; set; }
+        string prosumerType { get; set; }
+
     }
 }

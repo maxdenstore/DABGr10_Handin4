@@ -8,5 +8,14 @@ namespace VillageSqlDB.DbContext
 {
     class DbContext
     {
+
+        private VillageDbContext context;
+
+
+
+        public DbContext(VillageDbContext context)
+        {
+            this.context = context;
+        }
     }
 }

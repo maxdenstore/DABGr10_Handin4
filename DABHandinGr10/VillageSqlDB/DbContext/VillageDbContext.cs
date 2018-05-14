@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VillageSqlDB.Models;
 
 namespace VillageSqlDB
 {
-    class VillageDbContext
+    public class VillageDbContext : System.Data.Entity.DbContext
     {
+        public DbSet<Village> Villages { get; set; }
+       
+
+        public VillageDbContext():base("name")
+        {
+
+        }
+
+
+
     }
 }
