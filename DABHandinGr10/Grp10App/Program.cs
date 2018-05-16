@@ -10,6 +10,18 @@ namespace Grp10App
     {
         static void Main(string[] args)
         {
+            #region SQL local setup Village ( goes to unit of work )
+
+
+
+
+            #endregion
+
+            #region SQL local setup National ( goes to unit of work )
+
+
+
+            #endregion
         }
     }
 }

@@ -12,7 +12,7 @@ using VillageSqlDB.Models;
 
 namespace VillageSqlDB.VillageRepository
 {
-    class VillageRepository : IVillageRepository, IDisposable
+    public class VillageRepository : IVillageRepository, IDisposable
     {
         private VillageDbContext context;
 
