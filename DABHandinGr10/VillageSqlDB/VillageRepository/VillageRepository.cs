@@ -31,11 +31,6 @@ namespace VillageSqlDB.VillageRepository
             return context.Villages.Where(prediExpression);
         }
 
-        public IEnumerable<Village> GetVillage()
-        {
-  
-        }
-
         public Village SingleOrDefault(Expression<Func<Village, bool>> prediExpression)
         {
             return context.Villages.SingleOrDefault(prediExpression);
