@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace SGT_DocDB
 {
-    public class Class1
-    {
-    }
+
 }

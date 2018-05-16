@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProsumerDocDB", "ProsumerDocDB\ProsumerDocDB.csproj", "{1601115C-9F1B-4B02-9B5A-8E940E8F0948}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillageSqlDB", "VillageSqlDB\VillageSqlDB.csproj", "{807E1B8F-1276-4274-A41A-0E732D03C37A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitOfWork", "UnitOfWork\UnitOfWork.csproj", "{4601FB15-53E0-4C15-AC32-C5B192A65647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGT_logic", "SGT_logic\SGT_logic.csproj", "{724365C5-D12F-446E-8871-87D9637133FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4601FB15-53E0-4C15-AC32-C5B192A65647}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4601FB15-53E0-4C15-AC32-C5B192A65647}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4601FB15-53E0-4C15-AC32-C5B192A65647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724365C5-D12F-446E-8871-87D9637133FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724365C5-D12F-446E-8871-87D9637133FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724365C5-D12F-446E-8871-87D9637133FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724365C5-D12F-446E-8871-87D9637133FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

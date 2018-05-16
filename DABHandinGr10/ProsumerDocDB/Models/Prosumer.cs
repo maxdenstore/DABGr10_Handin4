@@ -7,7 +7,7 @@ using ProsumerDocDB.Interfaces;
 
 namespace ProsumerDocDB.Models
 {
-    class Prosumer : IProsumer
+    public class Prosumer : IProsumer
     {
         public int smartmeter { get; set; }
         public int copperId { get; set; }
