@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{807E1B8F-1276-4274-A41A-0E732D03C37A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VillageSqlDB</RootNamespace>
-    <AssemblyName>VillageSqlDB</AssemblyName>
+    <ProjectGuid>{0CB87A2F-97A4-40E8-B295-67C1B4486E63}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Grp10App</RootNamespace>
+    <AssemblyName>Grp10App</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,43 +49,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="DbContext\NationalsDbContext.cs" />
-    <Compile Include="Interfaces\INational.cs" />
-    <Compile Include="Interfaces\IVillage.cs" />
-    <Compile Include="Interfaces\IVillageRepository.cs" />
-    <Compile Include="Migrations\201805161117599_InitialCreate.cs" />
-    <Compile Include="Migrations\201805161117599_InitialCreate.Designer.cs">
-      <DependentUpon>201805161117599_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805161123033_initial.cs" />
-    <Compile Include="Migrations\201805161123033_initial.Designer.cs">
-      <DependentUpon>201805161123033_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\National.cs" />
-    <Compile Include="Models\Village.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DbContext\VillageDbContext.cs" />
-    <Compile Include="VillageRepository\VillageRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProsumerDocDB\ProsumerDocDB.csproj">
-      <Project>{1601115c-9f1b-4b02-9b5a-8e940e8f0948}</Project>
-      <Name>ProsumerDocDB</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805161117599_InitialCreate.resx">
-      <DependentUpon>201805161117599_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805161123033_initial.resx">
-      <DependentUpon>201805161123033_initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\ProsumerDocDB\ProsumerDocDB.csproj">
+      <Project>{1601115c-9f1b-4b02-9b5a-8e940e8f0948}</Project>
+      <Name>ProsumerDocDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SGT_DocDB\SGT_DocDB.csproj">
+      <Project>{0d189879-48ef-4fa9-b26e-521e8d923330}</Project>
+      <Name>SGT_DocDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj">
+      <Project>{4601fb15-53e0-4c15-ac32-c5b192a65647}</Project>
+      <Name>UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VillageSqlDB\VillageSqlDB.csproj">
+      <Project>{807e1b8f-1276-4274-a41a-0e732d03c37a}</Project>
+      <Name>VillageSqlDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
