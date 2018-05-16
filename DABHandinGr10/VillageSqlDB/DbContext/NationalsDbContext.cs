@@ -8,7 +8,7 @@ using VillageSqlDB.Models;
 
 namespace VillageSqlDB.DbContext
 {
-    class NationalsDbContext: DbContext
+    class NationalsDbContext : System.Data.Entity.DbContext
     {
         public DbSet<National> Nationals { get; set; }
 
