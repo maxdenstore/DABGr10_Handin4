@@ -6,16 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProsumerDocDB.Interfaces;
+using ProsumerDocDB.Models;
 
 namespace VillageSqlDB.Interfaces
 {
     public interface IVillage
     {
-        //mangler reference
-        ICollection <IProsumer> Villages { get; set; }
+
+        ICollection <Prosumer> Villages { get; set; }
 
         //tag key
-        [Key]
+
         int VillageID { get; set; }
 
         int VillageMeter { get; set; }

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VillageSqlDB.Interfaces;
 using VillageSqlDB.Models;
 
 namespace VillageSqlDB
@@ -12,8 +13,7 @@ namespace VillageSqlDB
     {
         public DbSet<Village> Villages { get; set; }
        
-
-        public VillageDbContext():base("name")
+        public VillageDbContext():base()
         {
 
         }
