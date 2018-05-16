@@ -7,9 +7,8 @@
         string buyerType { get; set; }
 
         int buyerId { get; set; }
-        string sellerType { get; set }
+        string sellerType { get; set; }
         int sellerId { get; set; }
         int amount { get; set; }
-    }
     }
 }
