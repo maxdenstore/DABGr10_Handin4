@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="DbContext\DbContext.cs" />
     <Compile Include="DbContext\NationalsDbContext.cs" />
     <Compile Include="Interfaces\INational.cs" />
     <Compile Include="Interfaces\IVillage.cs" />
