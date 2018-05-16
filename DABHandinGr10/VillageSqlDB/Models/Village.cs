@@ -11,11 +11,13 @@ namespace VillageSqlDB.Models
 {
     public class Village : IVillage
     {
-        public ICollection<Prosumer> Villages { get; set; }
+        
         public int VillageID { get; set; }
         public int VillageMeter { get; set; }
         public int CookerAmount { get; set; }
         public int CookerCapacity { get; set; }
         public int CookerConsumption { get; set; }
+
+        public virtual ICollection<Prosumer> Villages { get; set; } = new List<Prosumer>();
     }
 }
