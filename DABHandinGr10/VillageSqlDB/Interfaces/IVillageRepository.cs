@@ -5,10 +5,10 @@ namespace VillageSqlDB.Interfaces
 {
     public interface IVillageRepository
     {
-        Village GetVillageByID(int villageId);
-        void InsertVillage(Village village);
+        IVillage GetVillageByID(int villageId);
+        void InsertVillage(IVillage village);
         void DeleteVillage(int villageID);
-        void UpdateVillage(Village village);
+        void UpdateVillage(IVillage village);
         void Save();
     }
 }
