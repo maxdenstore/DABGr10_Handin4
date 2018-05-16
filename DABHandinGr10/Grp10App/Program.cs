@@ -18,26 +18,36 @@ namespace Grp10App
             #region SQL local setup Village ( goes to unit of work )
 
             VillageDbContext villageContext = new VillageDbContext();
-            VillageRepository villageRepo = new VillageRepository(villageContext); 
+            VillageRepository villageRepo = new VillageRepository(villageContext);
 
             //try add a village
-            Village village = new Village();
-            village.CookerAmount = 5;
-            village.CookerCapacity = 5;
-            village.VillageMeter = 100;
 
-            Prosumer firstProsumer = new Prosumer();
-            firstProsumer.prosumerType = "Prosumer";
-            firstProsumer.smartmeter = 10;
+            var villages = villageRepo.GetAll().ToList();
 
-            village.Villages.Add(firstProsumer);
+            if (villages.Count < 1) //make sure i dont over populate db
+            {
+                Village village = new Village();
+                village.CookerAmount = 5;
+                village.CookerCapacity = 5;
+                village.VillageMeter = 100;
+
+                Prosumer firstProsumer = new Prosumer();
+                firstProsumer.prosumerType = "Prosumer";
+                firstProsumer.smartmeter = 10;
 
 
-            villageRepo.InsertVillage(village);
+                village.Villages.Add(firstProsumer);
+
+
+                villageRepo.InsertVillage(village);
+
+
+
+                villageRepo.Save();
+            }
 
             
 
-            villageRepo.Save();
 
 
             #endregion
