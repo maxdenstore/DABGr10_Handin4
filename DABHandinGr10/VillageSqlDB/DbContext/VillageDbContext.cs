@@ -11,10 +11,9 @@ namespace VillageSqlDB
 {
     public class VillageDbContext : System.Data.Entity.DbContext
     {
-        public DbSet<IVillage> Villages { get; set; }
+        public DbSet<Village> Villages { get; set; }
        
-
-        public VillageDbContext():base("name")
+        public VillageDbContext():base()
         {
 
         }

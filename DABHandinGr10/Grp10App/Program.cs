@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VillageSqlDB;
+using VillageSqlDB.Interfaces;
+using VillageSqlDB.Models;
 using VillageSqlDB.VillageRepository;
 
 namespace Grp10App
@@ -17,7 +19,9 @@ namespace Grp10App
             VillageDbContext villageContext = new VillageDbContext();
             VillageRepository villageRepo = new VillageRepository(villageContext); 
 
-
+            //try add a village
+            Village village = new Village();
+            villageRepo.InsertVillage(village);
 
 
             #endregion

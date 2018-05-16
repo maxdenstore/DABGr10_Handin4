@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillageSqlDB", "VillageSqlD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitOfWork", "UnitOfWork\UnitOfWork.csproj", "{4601FB15-53E0-4C15-AC32-C5B192A65647}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grp10App", "Grp10App\Grp10App.csproj", "{0CB87A2F-97A4-40E8-B295-67C1B4486E63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4601FB15-53E0-4C15-AC32-C5B192A65647}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4601FB15-53E0-4C15-AC32-C5B192A65647}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4601FB15-53E0-4C15-AC32-C5B192A65647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CB87A2F-97A4-40E8-B295-67C1B4486E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB87A2F-97A4-40E8-B295-67C1B4486E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB87A2F-97A4-40E8-B295-67C1B4486E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB87A2F-97A4-40E8-B295-67C1B4486E63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,44 +21,44 @@ namespace VillageSqlDB.VillageRepository
             this.context = context;
         }
 
-        public IEnumerable<IVillage> GetAll()
+        public IEnumerable<Village> GetAll()
         {
             return context.Villages;
         }
 
-        public IEnumerable<IVillage> Find(Expression<Func<IVillage,bool>> prediExpression)
+        public IEnumerable<Village> Find(Expression<Func<Village,bool>> prediExpression)
         {
             return context.Villages.Where(prediExpression);
         }
 
-        public IVillage SingleOrDefault(Expression<Func<IVillage, bool>> prediExpression)
+        public Village SingleOrDefault(Expression<Func<Village, bool>> prediExpression)
         {
             return context.Villages.SingleOrDefault(prediExpression);
         }
 
 
-        public IVillage First(Expression<Func<IVillage, bool>> prediExpression)
+        public Village First(Expression<Func<Village, bool>> prediExpression)
         {
             return context.Villages.First(prediExpression);
         }
 
-        public IVillage GetVillageByID(int villageId)
+        public Village GetVillageByID(int villageId)
         {
             return context.Villages.Find(villageId);
         }
 
-        public void InsertVillage(IVillage village)
+        public void InsertVillage(Village village)
         {
             context.Villages.Add(village);
         }
 
         public void DeleteVillage(int villageID)
         {
-            IVillage student = context.Villages.Find(villageID);
+            Village student = context.Villages.Find(villageID);
             context.Villages.Remove(student);
         }
 
-        public void UpdateVillage(IVillage village)
+        public void UpdateVillage(Village village)
         {
             context.Entry(village).State = EntityState.Modified; 
         }
