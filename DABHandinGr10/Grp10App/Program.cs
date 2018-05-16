@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProsumerDocDB.Models;
 using VillageSqlDB;
 using VillageSqlDB.Interfaces;
 using VillageSqlDB.Models;
@@ -21,7 +22,22 @@ namespace Grp10App
 
             //try add a village
             Village village = new Village();
+            village.CookerAmount = 5;
+            village.CookerCapacity = 5;
+            village.VillageMeter = 100;
+
+            Prosumer firstProsumer = new Prosumer();
+            firstProsumer.prosumerType = "Prosumer";
+            firstProsumer.smartmeter = 10;
+
+            village.Villages.Add(firstProsumer);
+
+
             villageRepo.InsertVillage(village);
+
+            
+
+            villageRepo.Save();
 
 
             #endregion
