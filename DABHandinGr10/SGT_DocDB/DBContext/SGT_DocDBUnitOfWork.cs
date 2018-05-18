@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGT_DocDB.DBContext
 {
-    class SGT_DocDBUnitOfWork
+    public class SGT_DocDBUnitOfWork
     {
         public SGT_DocDB.Repository.SGT_Repository _SGT_Repository;
 

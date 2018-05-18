@@ -10,7 +10,11 @@ namespace SGT_DocDB.DBContext
 {
     public class SGTDBContext
     {
-        public DocumentCollection SGT_Collection { get; set; }
+        public DocumentCollection temp { get; set;}
+
+        public DocumentCollection upcommingTransactions { get; set; }
+        public DocumentCollection previousTransactions { get; set; }
+        public DocumentCollection onGoingTransactions { get; set; }
 
         private SGT_DocDB.Repository.SGT_Repository _SGT_Repository;
 
@@ -23,6 +27,7 @@ namespace SGT_DocDB.DBContext
 
         public SGTDBContext()
         {
+
             try
             {
                 LoadDB().Wait();
@@ -41,7 +46,7 @@ namespace SGT_DocDB.DBContext
         {
             client = new DocumentClient(new Uri(_endPointUrl), _PrimaryKey);
             await client.CreateDatabaseIfNotExistsAsync(new Database { Id = _Database });
-            SGT_Collection = await client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(_Database)
+            temp = await client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(_Database)
                 , new DocumentCollection { Id = _Database });
         }
     }
