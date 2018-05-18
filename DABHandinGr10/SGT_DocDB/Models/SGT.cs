@@ -8,7 +8,7 @@ using VillageSqlDB.Models;
 
 namespace SGT_DocDB.Models
 {
-    class SGT: Interfaces.SGT
+    class SGT: Interfaces.ISGT
     {
         public ICollection<National> national { get; set; }
         public ICollection<Transaction> transaction { get; set; }
