@@ -9,7 +9,7 @@ namespace VillageSqlDB.Models
 {
     public class National : INational
     {
-        public ICollection<IVillage> Villages { get; set; }
+        public ICollection<IVillage> Villages { get; set; } = new List<IVillage>();
         public int NationalID { get; set; }
     }
 }

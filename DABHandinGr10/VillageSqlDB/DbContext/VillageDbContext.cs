@@ -12,7 +12,7 @@ namespace VillageSqlDB
     public class VillageDbContext : System.Data.Entity.DbContext
     {
         public DbSet<Village> Villages { get; set; }
-       
+        public DbSet<National> Nationals { get; set; }
         public VillageDbContext():base()
         {
 
