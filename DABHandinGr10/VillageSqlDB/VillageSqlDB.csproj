@@ -52,15 +52,6 @@
     <Compile Include="Interfaces\INational.cs" />
     <Compile Include="Interfaces\IVillage.cs" />
     <Compile Include="Interfaces\IVillageRepository.cs" />
-    <Compile Include="Migrations\201805161117599_InitialCreate.cs" />
-    <Compile Include="Migrations\201805161117599_InitialCreate.Designer.cs">
-      <DependentUpon>201805161117599_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805161123033_initial.cs" />
-    <Compile Include="Migrations\201805161123033_initial.Designer.cs">
-      <DependentUpon>201805161123033_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\National.cs" />
     <Compile Include="Models\Village.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,14 +67,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805161117599_InitialCreate.resx">
-      <DependentUpon>201805161117599_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805161123033_initial.resx">
-      <DependentUpon>201805161123033_initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

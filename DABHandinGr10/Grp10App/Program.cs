@@ -31,6 +31,8 @@ namespace Grp10App
                 village.CookerCapacity = 5;
                 village.VillageMeter = 100;
 
+                
+
                 Prosumer firstProsumer = new Prosumer();
                 firstProsumer.prosumerType = "Prosumer";
                 firstProsumer.smartmeter = 10;
