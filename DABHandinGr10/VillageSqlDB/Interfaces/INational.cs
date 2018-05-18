@@ -11,5 +11,7 @@ namespace VillageSqlDB.Interfaces
         ICollection<IVillage> Villages { get; set; }
 
         int NationalID { get; set; }
+
+        string NationName { get; set; }
     }
 }

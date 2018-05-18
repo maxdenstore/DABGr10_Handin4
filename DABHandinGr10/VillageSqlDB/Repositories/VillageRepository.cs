@@ -21,41 +21,41 @@ namespace VillageSqlDB.Repositories
             this.context = context;
         }
 
-        public IEnumerable<Village> GetAll()
+        public Task<List<Village>> GetAllAsync()
         {
-            return context.Villages;
+            return context.Villages.ToListAsync();
         }
 
-        public IEnumerable<Village> Find(Expression<Func<Village,bool>> prediExpression)
+        public Task<List<Village>> FindAsync(Expression<Func<Village, bool>> prediExpression)
         {
-            return context.Villages.Where(prediExpression);
+            return context.Villages.Where(prediExpression).ToListAsync();
         }
 
-        public Village SingleOrDefault(Expression<Func<Village, bool>> prediExpression)
+        public Task<Village> SingleOrDefaultAsync(Expression<Func<Village, bool>> prediExpression)
         {
-            return context.Villages.SingleOrDefault(prediExpression);
+            return context.Villages.SingleOrDefaultAsync(prediExpression);
         }
 
-
-        public Village First(Expression<Func<Village, bool>> prediExpression)
+        public Task<Village> FirstAsync(Expression<Func<Village, bool>> prediExpression)
         {
-            return context.Villages.First(prediExpression);
+            return context.Villages.FirstAsync(prediExpression);
         }
 
-        public Village GetVillageByID(int villageId)
+        public Task<Village> GetVillageByIDAsync(int villageId)
         {
-            return context.Villages.Find(villageId);
+            return context.Villages.FindAsync(villageId);
         }
 
         public void InsertVillage(Village village)
         {
-            context.Villages.Add(village);
+             context.Villages.Add(village);
         }
 
         public void DeleteVillage(int villageID)
         {
-            Village village = context.Villages.Find(villageID);
-            context.Villages.Remove(village);
+            Task<Village> village = context.Villages.FindAsync(villageID);
+;
+            context.Villages.Remove(village.Result);
         }
 
         public void UpdateVillage(Village village)
