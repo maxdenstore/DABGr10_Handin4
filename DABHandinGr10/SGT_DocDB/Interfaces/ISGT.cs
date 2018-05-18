@@ -5,7 +5,7 @@ using VillageSqlDB.Models;
 
 namespace SGT_DocDB.Interfaces
 {
-    public interface SGT
+    public interface ISGT
     {
         ICollection<National> national { get; set; }
         ICollection<Transaction> transaction { get; set; }
