@@ -23,5 +23,7 @@ namespace VillageSqlDB.Interfaces
         int CookerAmount { get; set; }
         int CookerCapacity { get; set; }
         int CookerConsumption { get; set; }
+
+        string VillageName { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace VillageSqlDB.Models
         public int CookerAmount { get; set; }
         public int CookerCapacity { get; set; }
         public int CookerConsumption { get; set; }
+        public string VillageName { get; set; }
 
         [NotMapped] //not mapped because this is in our documentDB
         public virtual ICollection<Prosumer> Villages { get; set; } = new List<Prosumer>();
