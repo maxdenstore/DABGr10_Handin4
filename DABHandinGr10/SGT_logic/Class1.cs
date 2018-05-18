@@ -23,7 +23,7 @@ namespace SGT_logic
             {
                 Transaction transaction = new Transaction();
                 transaction.amount = pr.smartmeter;
-                transaction.sellerId = pr.copperId;
+                transaction.sellerId = pr.CopperID;
                 allTransactions.Add(transaction);
             }
 
@@ -53,7 +53,7 @@ namespace SGT_logic
 
                         foreach(Prosumer pr in village.Villages)
                         {
-                            if(pr.copperId != ta.sellerId)
+                            if(pr.CopperID != ta.sellerId)
                             {
                                 while(pr.smartmeter < 0)
                                 {
