@@ -28,7 +28,7 @@ namespace SGT_DocDB.Repository
             }
             catch(Exception e)
             {
-               // _Context.temp = _Context.onGoingTransactions;   
+                //_Context.temp = _Context.upcommingTransactions;   
                 Document created = await _Context.client.CreateDocumentAsync(_Context.temp.DocumentsLink, sgt);
             }
         }

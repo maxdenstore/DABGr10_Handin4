@@ -22,6 +22,16 @@ namespace SGT_TestApp
                 buyerType = "prviat",
                 sellerId = 2,
                 sellerType = "privat",
+                transactionType = "upcomming"
+            };
+            Transaction trans1 = new Transaction
+            {
+                transactionId = 2,
+                amount = 100,
+                buyerId = 21,
+                buyerType = "prviat",
+                sellerId = 23,
+                sellerType = "privat",
                 transactionType = "ongoing"
             };
 
@@ -30,10 +40,14 @@ namespace SGT_TestApp
 
 
             SGT_DocDB.DBContext.SGT_DocDBUnitOfWork x =
-                new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext());
+                new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
 
+            SGT_DocDB.DBContext.SGT_DocDBUnitOfWork y =
+                new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("onGoing"));
 
             x._SGT_Repository.AddTransaction(trans).Wait();
+            y._SGT_Repository.AddTransaction(trans1).Wait();
+            
         }
     }
 }
