@@ -11,5 +11,7 @@ namespace VillageSqlDB.Models
     {
         public ICollection<IVillage> Villages { get; set; } = new List<IVillage>();
         public int NationalID { get; set; }
+
+        public string NationName { get; set; }
     }
 }

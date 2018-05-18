@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentUnitOfWork\ProsumerDocumentDBUnitOfWork.cs" />
+    <Compile Include="Interfaces\ISmartGridUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartGridUnitOfWork.cs" />
   </ItemGroup>

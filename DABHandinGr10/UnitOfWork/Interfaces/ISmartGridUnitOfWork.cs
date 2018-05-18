@@ -10,7 +10,7 @@ namespace UnitOfWork.Interfaces
     public interface ISmartGridUnitOfWork
     {
         #region Create
-        Task<National> CreateNational(National nation);
+        National CreateNational(National nation);
         Village CreateVillage(Village village);
         #endregion
 
