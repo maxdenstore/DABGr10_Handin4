@@ -10,7 +10,7 @@ using VillageSqlDB.Interfaces;
 using VillageSqlDB.Models;
 
 
-namespace VillageSqlDB.VillageRepository
+namespace VillageSqlDB.Repositories
 {
     public class VillageRepository : IVillageRepository, IDisposable
     {
@@ -54,8 +54,8 @@ namespace VillageSqlDB.VillageRepository
 
         public void DeleteVillage(int villageID)
         {
-            Village student = context.Villages.Find(villageID);
-            context.Villages.Remove(student);
+            Village village = context.Villages.Find(villageID);
+            context.Villages.Remove(village);
         }
 
         public void UpdateVillage(Village village)
@@ -70,7 +70,7 @@ namespace VillageSqlDB.VillageRepository
 
         private bool disposed = false;
 
-        protected virtual void Dispose(bool disposing)
+        public void Dispose(bool disposing)
         {
             if (!this.disposed)
             {

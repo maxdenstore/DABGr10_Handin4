@@ -59,8 +59,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DBContext\SGTDBContext.cs" />
     <Compile Include="DBContext\SGT_DocDBUnitOfWork.cs" />
+    <Compile Include="Interfaces\ISGT.cs" />
     <Compile Include="Interfaces\ITransaction.cs" />
-    <Compile Include="Interfaces\SGT.cs" />
     <Compile Include="Models\SGT.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ProsumerDocDB.Models;
 using VillageSqlDB;
+
 using VillageSqlDB.Interfaces;
 using VillageSqlDB.Models;
-using VillageSqlDB.VillageRepository;
+using VillageSqlDB.Repositories;
+
 
 namespace Grp10App
 {
@@ -19,6 +21,7 @@ namespace Grp10App
 
             VillageDbContext villageContext = new VillageDbContext();
             VillageRepository villageRepo = new VillageRepository(villageContext);
+            NationalRepository nationalRepo = new NationalRepository(new VillageDbContext());
 
             //try add a village
 
@@ -26,6 +29,13 @@ namespace Grp10App
 
             if (villages.Count < 1) //make sure i dont over populate db
             {
+                //make national
+                National danmark = new National();
+        
+
+
+
+
                 Village village = new Village();
                 village.CookerAmount = 5;
                 village.CookerCapacity = 5;
@@ -39,12 +49,16 @@ namespace Grp10App
 
 
                 village.Villages.Add(firstProsumer);
+                danmark.Villages.Add(village);
 
 
+
+                nationalRepo.InsertNational(danmark);
                 villageRepo.InsertVillage(village);
 
+               
 
-
+                nationalRepo.Save();
                 villageRepo.Save();
             }
 

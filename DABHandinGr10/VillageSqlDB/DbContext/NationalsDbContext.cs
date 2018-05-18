@@ -8,13 +8,13 @@ using VillageSqlDB.Models;
 
 namespace VillageSqlDB.DbContext
 {
-    class NationalsDbContext : System.Data.Entity.DbContext
-    {
-        public DbSet<National> Nationals { get; set; }
+    //public class NationalsDbContext : System.Data.Entity.DbContext
+    //{
+    //    public DbSet<National> Nationals { get; set; }
 
-        public NationalsDbContext():base("name")
-        {
+    //    public NationalsDbContext():base("name")
+    //    {
             
-        }
-    }
+    //    }
+    //}
 }
