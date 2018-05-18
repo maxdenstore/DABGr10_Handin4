@@ -61,9 +61,10 @@ namespace VillageSqlDB.Repositories
             context.Entry(National).State = EntityState.Modified;
         }
 
-        public void Save()
+        public async void Save()
         {
-            context.SaveChanges();
+            await context.SaveChangesAsync();
+
         }
 
         private bool disposed = false;

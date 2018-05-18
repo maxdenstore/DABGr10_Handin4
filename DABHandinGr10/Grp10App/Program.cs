@@ -19,8 +19,7 @@ namespace Grp10App
         {
             #region SQL local setup Village ( goes to unit of work )
 
-            VillageDbContext villageContext = new VillageDbContext();
-            VillageRepository villageRepo = new VillageRepository(villageContext);
+            VillageRepository villageRepo = new VillageRepository(new VillageDbContext());
             NationalRepository nationalRepo = new NationalRepository(new VillageDbContext());
 
             //try add a village
@@ -68,11 +67,7 @@ namespace Grp10App
 
             #endregion
 
-            #region SQL local setup National ( goes to unit of work )
 
-
-
-            #endregion
         }
     }
 }
