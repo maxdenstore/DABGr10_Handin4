@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -20,50 +21,57 @@ namespace VillageSqlDB.Repositories
         {
             this.context = context;
         }
-        public IEnumerable<National> GetAll()
+        public Task<List<National>> GetAll()
         {
-            return context.Nationals;
+            return context.Nationals.ToListAsync();
         }
 
-        public IEnumerable<National> Find(Expression<Func<National, bool>> prediExpression)
+        public Task<List<National>> FindAsync(Expression<Func<National, bool>> prediExpression)
         {
-            return context.Nationals.Where(prediExpression);
+            return context.Nationals.Where(prediExpression).ToListAsync();
         }
 
-        public National SingleOrDefault(Expression<Func<National, bool>> prediExpression)
+        public Task<National> SingleOrDefaultAsync(Expression<Func<National, bool>> prediExpression)
         {
-            return context.Nationals.SingleOrDefault(prediExpression);
+            return context.Nationals.SingleOrDefaultAsync(prediExpression);
         }
 
-        public National First(Expression<Func<National, bool>> prediExpression)
+        public Task<National> FirstAsync(Expression<Func<National, bool>> prediExpression)
         {
-            return context.Nationals.First(prediExpression);
+            return context.Nationals.FirstAsync(prediExpression);
         }
 
-        public National GetNationalByID(int NationalId)
+        public Task<National> GetNationalByIDAsync(int NationalId)
         {
-            return context.Nationals.Find(NationalId);
+            return context.Nationals.FindAsync(NationalId);
         }
 
-        public void InsertNational(National National)
+        public  void InsertNational(National National)
         {
-            context.Nationals.Add(National);
+             context.Nationals.Add(National);
+
         }
 
         public void DeleteNational(int NationalID)
         {
             National national = context.Nationals.Find(NationalID);
             context.Nationals.Remove(national);
+
         }
 
         public void UpdateNational(National National)
         {
-            context.Entry(National).State = EntityState.Modified;
+            //var nation = context.Nationals.FirstAsync(x => x.NationName == National.NationName).Result;
+
+            //nation = National;
+
+
+
         }
 
-        public async void Save()
+        public  void Save()
         {
-            await context.SaveChangesAsync();
+            context.SaveChanges();
 
         }
 

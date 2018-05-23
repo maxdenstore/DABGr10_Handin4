@@ -46,26 +46,29 @@ namespace VillageSqlDB.Repositories
             return context.Villages.FindAsync(villageId);
         }
 
-        public void InsertVillage(Village village)
+        public async void InsertVillage(Village village)
         {
              context.Villages.Add(village);
+
         }
 
-        public void DeleteVillage(int villageID)
+        public async void DeleteVillage(int villageID)
         {
             Task<Village> village = context.Villages.FindAsync(villageID);
 ;
             context.Villages.Remove(village.Result);
+
         }
 
-        public void UpdateVillage(Village village)
+        public async void UpdateVillage(Village village)
         {
-            context.Entry(village).State = EntityState.Modified; 
+            context.Entry(village).State = EntityState.Modified;
+
         }
 
-        public async void Save()
+        public void Save()
         {
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
         private bool disposed = false;

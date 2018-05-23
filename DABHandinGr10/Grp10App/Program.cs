@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProsumerDocDB.Models;
+using UnitOfWork;
 using VillageSqlDB;
 
 using VillageSqlDB.Interfaces;
@@ -17,8 +18,9 @@ namespace Grp10App
     {
         static void Main(string[] args)
         {
-            #region SQL local setup Village ( goes to unit of work )
 
+            #region SQL local setup Village ( goes to unit of work )
+          /*
             VillageRepository villageRepo = new VillageRepository(new VillageDbContext());
             NationalRepository nationalRepo = new NationalRepository(new VillageDbContext());
 
@@ -63,12 +65,34 @@ namespace Grp10App
                 villageRepo.Save();
             }
 
-            
 
 
+    */
 
             #endregion
 
+
+            #region UnitofWork
+            SmartGridUnitOfWork unit = new SmartGridUnitOfWork();
+            
+            National unitofWorkNation = new National();
+            unitofWorkNation.NationName = "NationThroughUnitOFWORK";
+
+            Village unitofworkVillage = new Village();
+            unitofworkVillage.VillageName = "unitofwrokvillage2";
+            unitofworkVillage.CookerAmount = 200;
+
+
+            
+
+            //unit.CreateNational(unitofWorkNation);
+            //unit.CreateVillage(unitofworkVillage, unitofWorkNation.NationName);
+
+
+            unit.UpdateVillage(unitofworkVillage);
+
+
+            #endregion
 
         }
     }

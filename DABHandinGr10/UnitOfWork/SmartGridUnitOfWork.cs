@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.Threading.Tasks;
 using UnitOfWork.Interfaces;
 using VillageSqlDB;
@@ -25,12 +26,25 @@ namespace UnitOfWork
         /// <returns>the created nation if its valid, else null</returns>
         public National CreateNational(National nation)
         {
+           
             if (nation != null)
             {
-                nationalRepo.InsertNational(nation);
-                nationalRepo.Save();
 
-                return nationalRepo.GetNationalByID(nation.NationalID);
+                try
+                {
+                    var exsist = nationalRepo.FirstAsync(x => x.NationName == nation.NationName).Result;
+                    return exsist;
+                }
+                catch (Exception e)
+                {
+                    nationalRepo.InsertNational(nation);
+                    nationalRepo.Save();
+
+                    var returner = nationalRepo.FirstAsync(n => n.NationName == nation.NationName).Result;
+                    return returner;
+                }
+
+
             }
 
             return null;
@@ -41,14 +55,33 @@ namespace UnitOfWork
         /// </summary>
         /// <param name="village">the village to create</param>
         /// <returns>created village if valid, else null</returns>
-        public Village CreateVillage(Village village)
+        public Village CreateVillage(Village village, string nationName)
         {
-            if (village != null)
-            {
-                villageRepo.InsertVillage(village);
-                villageRepo.Save();
+            //get the nation where village belongs
+            var tempNation = nationalRepo.FirstAsync(name => name.NationName == nationName).Result;
 
-                return villageRepo.GetVillageByIDAsync(village.VillageID).Result;
+            if (village != null && tempNation != null)
+            {
+                try
+                {
+                    //returns the village because its there already
+                    var exsist = villageRepo.FirstAsync(x => x.VillageName == village.VillageName).Result;
+                    return exsist;
+                }
+                catch (Exception e)
+                {
+
+                    //add the village to the nation
+                    tempNation.Villages.Add(village);
+
+                    //update nation
+                    //nationalRepo.UpdateNational(tempNation);
+                    nationalRepo.Save();
+
+                    var returner = villageRepo.FirstAsync(v => v.VillageName == village.VillageName).Result;
+
+                    return returner;
+                }
             }
 
             return null;

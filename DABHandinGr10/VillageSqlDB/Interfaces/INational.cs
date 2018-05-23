@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VillageSqlDB.Models;
 
 namespace VillageSqlDB.Interfaces
 {
     interface INational
     {
-        ICollection<IVillage> Villages { get; set; }
+        ICollection<Village> Villages { get; set; }
 
         int NationalID { get; set; }
 
