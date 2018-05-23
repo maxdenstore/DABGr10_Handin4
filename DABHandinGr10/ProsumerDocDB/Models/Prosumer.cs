@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using ProsumerDocDB.Interfaces;
 
 namespace ProsumerDocDB.Models
@@ -11,7 +12,8 @@ namespace ProsumerDocDB.Models
     public class Prosumer : IProsumer
     {
         [Key]
-        public int CopperID { get; set; }
+        [JsonProperty(Required = Required.Always, PropertyName = "id")]
+        public string CopperID { get; set; }
 
         public int smartmeter { get; set; }
 

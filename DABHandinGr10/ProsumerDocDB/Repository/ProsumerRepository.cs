@@ -30,7 +30,7 @@ namespace ProsumerDocDB.Repository
             }
         }
 
-        public ProsumerDocDB.Models.Prosumer GetProsumerByCopperID(int CopperID)
+        public ProsumerDocDB.Models.Prosumer GetProsumerByCopperID(string CopperID)
         {
             ProsumerDocDB.Models.Prosumer prosumer = _Context.client.CreateDocumentQuery<ProsumerDocDB.Models.Prosumer>(_Context.ProsumorCollection.DocumentsLink)
                 .Where(x => x.CopperID == CopperID)
@@ -43,7 +43,7 @@ namespace ProsumerDocDB.Repository
             return prosumer;
         }
 
-        public void DeleteProsumer(int CopperID)
+        public void DeleteProsumer(string CopperID)
         {
             Document doc = GetDoc(CopperID);
             if( doc != null)
@@ -52,9 +52,9 @@ namespace ProsumerDocDB.Repository
             }
         }
 
-       private Document GetDoc(int CopperID)
+       private Document GetDoc(string CopperID)
        {
-            return _Context.client.CreateDocumentQuery(_Context.ProsumorCollection.DocumentsLink).Where(x => x.Id == CopperID.ToString())
+            return _Context.client.CreateDocumentQuery(_Context.ProsumorCollection.DocumentsLink).Where(x => x.Id == CopperID)
                 .AsEnumerable().FirstOrDefault();
        }
 

@@ -8,7 +8,7 @@ namespace ProsumerDocDB.Interfaces
 {
     public interface IProsumer
     {
-        int CopperID { get; set; }
+        string CopperID { get; set; }
 
         int smartmeter { get; set; }
 

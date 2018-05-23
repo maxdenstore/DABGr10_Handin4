@@ -16,21 +16,21 @@ namespace SGT_TestApp
 
             Transaction trans = new Transaction
             {
-                transactionId = 1,
+                transactionId = "1",
                 amount = 100,
-                buyerId = 1,
+                buyerId = "1",
                 buyerType = "prviat",
-                sellerId = 2,
+                sellerId = "2",
                 sellerType = "privat",
                 transactionType = "upcomming"
             };
             Transaction trans1 = new Transaction
             {
-                transactionId = 2,
+                transactionId = "2",
                 amount = 100,
-                buyerId = 21,
+                buyerId = "21",
                 buyerType = "prviat",
-                sellerId = 23,
+                sellerId = "23",
                 sellerType = "privat",
                 transactionType = "ongoing"
             };
@@ -47,6 +47,10 @@ namespace SGT_TestApp
 
             x._SGT_Repository.AddTransaction(trans).Wait();
             y._SGT_Repository.AddTransaction(trans1).Wait();
+
+            y._SGT_Repository.GetTransactionById("2");
+
+            y._SGT_Repository.DeleteTransaction("2");
             
         }
     }
