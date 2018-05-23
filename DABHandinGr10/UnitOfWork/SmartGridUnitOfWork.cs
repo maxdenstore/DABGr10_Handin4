@@ -1,11 +1,10 @@
 ﻿
 
 using System;
-<<<<<<< HEAD
-=======
+
 using System.Collections.Generic;
 using System.Linq.Expressions;
->>>>>>> 5456c6dbd5fc55bba7b67be788c6aafc090bb5ca
+
 using System.Threading.Tasks;
 using UnitOfWork.Interfaces;
 using System.Linq;
@@ -100,7 +99,7 @@ namespace UnitOfWork
         {
 
             var nation = new National();
-            nationalRepo.Find(national => nation.NationName == nationName);
+            nationalRepo.FindAsync(national => nation.NationName == nationName);
             return nation;
         }
 
