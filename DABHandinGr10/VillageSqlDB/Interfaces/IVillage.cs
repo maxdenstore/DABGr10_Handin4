@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using ProsumerDocDB.Interfaces;
 using ProsumerDocDB.Models;
 
@@ -12,7 +13,7 @@ namespace VillageSqlDB.Interfaces
 {
     public interface IVillage
     {
-
+        [JsonIgnore]
         ICollection <Prosumer> Villages { get; set; }
 
         //tag key

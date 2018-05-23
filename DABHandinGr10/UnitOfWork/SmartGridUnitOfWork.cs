@@ -48,7 +48,7 @@ namespace UnitOfWork
                 villageRepo.InsertVillage(village);
                 villageRepo.Save();
 
-                return villageRepo.GetVillageByID(village.VillageID);
+                return villageRepo.GetVillageByIDAsync(village.VillageID).Result;
             }
 
             return null;
