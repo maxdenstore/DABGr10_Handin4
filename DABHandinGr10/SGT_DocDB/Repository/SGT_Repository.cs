@@ -33,7 +33,7 @@ namespace SGT_DocDB.Repository
             }
         }
 
-        public SGT_DocDB.Models.Transaction GetTransactionById(int transId)
+        public SGT_DocDB.Models.Transaction GetTransactionById(string transId)
         {
             SGT_DocDB.Models.Transaction sgt = _Context.client.CreateDocumentQuery<SGT_DocDB.Models.Transaction>(_Context.temp.DocumentsLink)
                 .Where(x => x.transactionId == transId)
@@ -47,5 +47,20 @@ namespace SGT_DocDB.Repository
             return sgt;
         }
 
+
+        public void DeleteTransaction(string transId)
+        {
+            Document doc = GetDoc(transId);
+            if (doc != null)
+            {
+                _Context.client.DeleteDocumentAsync(doc.SelfLink).Wait();
+            }
+        }
+
+        private Document GetDoc(string transId)
+        {
+            return _Context.client.CreateDocumentQuery(_Context.temp.DocumentsLink).Where(x => x.Id == transId)
+                .AsEnumerable().FirstOrDefault();
+        }
     }
 }

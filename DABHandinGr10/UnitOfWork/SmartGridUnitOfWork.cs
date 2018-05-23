@@ -1,8 +1,14 @@
 ﻿
 
 using System;
+<<<<<<< HEAD
+=======
+using System.Collections.Generic;
+using System.Linq.Expressions;
+>>>>>>> 5456c6dbd5fc55bba7b67be788c6aafc090bb5ca
 using System.Threading.Tasks;
 using UnitOfWork.Interfaces;
+using System.Linq;
 using VillageSqlDB;
 using VillageSqlDB.Models;
 using VillageSqlDB.Repositories;
@@ -92,20 +98,29 @@ namespace UnitOfWork
         #region Read
         public National ReadNational(string nationName)
         {
-            throw new System.NotImplementedException();
+
+            var nation = new National();
+            nationalRepo.Find(national => nation.NationName == nationName);
+            return nation;
         }
 
-        public Village ReadVillage(string VillageName)
+        public Village ReadVillage(string VillageNamed)
         {
-            throw new System.NotImplementedException();
+            var village = new Village();
+            villageRepo.FindAsync(x => x.VillageName == VillageNamed);
+            return village;
         }
+
         #endregion
 
 
         #region Update
         public National UpdateNational(National updated)
         {
-            throw new System.NotImplementedException();
+
+            nationalRepo.UpdateNational(updated);
+
+            return updated;
         }
 
         public Village UpdateVillage(Village Updated)
