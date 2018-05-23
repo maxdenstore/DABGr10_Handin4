@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using VillageSqlDB.Interfaces;
@@ -46,26 +47,33 @@ namespace VillageSqlDB.Repositories
             return context.Villages.FindAsync(villageId);
         }
 
-        public void InsertVillage(Village village)
+        public async void InsertVillage(Village village)
         {
              context.Villages.Add(village);
+
         }
 
-        public void DeleteVillage(int villageID)
+        public async void DeleteVillage(int villageID)
         {
             Task<Village> village = context.Villages.FindAsync(villageID);
 ;
             context.Villages.Remove(village.Result);
+
         }
 
-        public void UpdateVillage(Village village)
+        public void UpdateVillage(Village villagess)
         {
-            context.Entry(village).State = EntityState.Modified; 
+            var temp = context.Villages.FirstAsync(x => x.VillageName == villagess.VillageName).Result;
+            villagess.VillageID = temp.VillageID;
+
+
+            context.Villages.AddOrUpdate(villagess);
+            Save();
         }
 
-        public async void Save()
+        public void Save()
         {
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
         private bool disposed = false;

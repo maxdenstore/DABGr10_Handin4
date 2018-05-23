@@ -11,7 +11,7 @@ namespace UnitOfWork.Interfaces
     {
         #region Create
         National CreateNational(National nation);
-        Village CreateVillage(Village village);
+        Village CreateVillage(Village village, string nationName);
         #endregion
 
         #region Read

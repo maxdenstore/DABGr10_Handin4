@@ -46,6 +46,9 @@ namespace SGT_TestApp
                 new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("onGoing"));
 
             x._SGT_Repository.AddTransaction(trans).Wait();
+
+            x._SGT_Repository.DeleteTransaction(trans.transactionId);
+
             y._SGT_Repository.AddTransaction(trans1).Wait();
 
             y._SGT_Repository.GetTransactionById("2");
