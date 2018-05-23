@@ -81,6 +81,8 @@ namespace Grp10App
             Village unitofworkVillage = new Village();
             unitofworkVillage.VillageName = "unitofwrokvillage2";
             unitofworkVillage.CookerAmount = 200;
+            unitofworkVillage.CookerCapacity = 300;
+            unitofworkVillage.CookerConsumption = 400;
 
 
             

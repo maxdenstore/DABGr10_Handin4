@@ -97,17 +97,12 @@ namespace UnitOfWork
         #region Read
         public National ReadNational(string nationName)
         {
-
-            var nation = new National();
-            nationalRepo.FindAsync(national => nation.NationName == nationName);
-            return nation;
+            return nationalRepo.FirstAsync(national => national.NationName == nationName).Result;
         }
 
         public Village ReadVillage(string VillageNamed)
         {
-            var village = new Village();
-            villageRepo.FindAsync(x => x.VillageName == VillageNamed);
-            return village;
+            return villageRepo.FirstAsync(v => v.VillageName == VillageNamed).Result;
         }
 
         #endregion
@@ -118,13 +113,16 @@ namespace UnitOfWork
         {
 
             nationalRepo.UpdateNational(updated);
-
+    
             return updated;
         }
 
         public Village UpdateVillage(Village Updated)
         {
-            throw new System.NotImplementedException();
+
+            villageRepo.UpdateVillage(Updated);
+
+            return Updated;
         }
         #endregion
 

@@ -61,10 +61,12 @@ namespace VillageSqlDB.Repositories
 
         public void UpdateNational(National National)
         {
-            //var nation = context.Nationals.FirstAsync(x => x.NationName == National.NationName).Result;
+            var temp = context.Nationals.FirstAsync(x => x.NationName == National.NationName).Result;
+            National.NationalID = temp.NationalID;
 
-            //nation = National;
 
+            context.Nationals.AddOrUpdate(National);
+            Save();
 
 
         }

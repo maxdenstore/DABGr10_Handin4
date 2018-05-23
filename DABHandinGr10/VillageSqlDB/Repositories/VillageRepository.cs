@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using VillageSqlDB.Interfaces;
@@ -60,10 +61,14 @@ namespace VillageSqlDB.Repositories
 
         }
 
-        public async void UpdateVillage(Village village)
+        public void UpdateVillage(Village villagess)
         {
-            context.Entry(village).State = EntityState.Modified;
+            var temp = context.Villages.FirstAsync(x => x.VillageName == villagess.VillageName).Result;
+            villagess.VillageID = temp.VillageID;
 
+
+            context.Villages.AddOrUpdate(villagess);
+            Save();
         }
 
         public void Save()
