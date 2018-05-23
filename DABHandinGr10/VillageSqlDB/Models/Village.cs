@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using ProsumerDocDB.Interfaces;
 using ProsumerDocDB.Models;
 using VillageSqlDB.Interfaces;
@@ -20,7 +21,7 @@ namespace VillageSqlDB.Models
         public int CookerConsumption { get; set; }
         public string VillageName { get; set; }
 
-        [NotMapped] //not mapped because this is in our documentDB
+        [JsonIgnore,NotMapped] //not mapped because this is in our documentDB
         public virtual ICollection<Prosumer> Villages { get; set; } = new List<Prosumer>();
     }
 }

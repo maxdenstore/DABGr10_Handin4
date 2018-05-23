@@ -24,7 +24,9 @@ namespace Grp10App
 
             //try add a village
 
-            var villages = villageRepo.GetAll().ToList();
+
+
+            var villages = villageRepo.GetAllAsync().Result.ToList();
 
             if (villages.Count < 1) //make sure i dont over populate db
             {
