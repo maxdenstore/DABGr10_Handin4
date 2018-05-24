@@ -9,9 +9,9 @@ using VillageSqlDB.Models;
 
 namespace SGT_logic
 {
-    /*
-    public class Class1 {
 
+    public class Class1
+    {
 
 
         /*
@@ -26,144 +26,195 @@ namespace SGT_logic
          * delete transaction from ongoing
          * do it all over again
          */
-         /*
+
         private SGT_DocDB.DBContext.SGT_DocDBUnitOfWork x;
         private int tramsactionIdCounter = 0;
-        private int completedP2PTransactions = 0;
+        private int transactionCounter = 0;
 
-        Class1()
+        public Class1()
         {
             x = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
         }
 
 
-        public void addTransactions(Village village)
+        public void addTransactions(National nation)
         {
-            int energyForSale = village.VillageMeter;
-
-            List<Prosumer> positiveProsumers = new List<Prosumer>();
-            List<Prosumer> negativeProsumers = new List<Prosumer>();
-            List<Transaction> allTransactions = new List<Transaction>();
-
-            //Seperateing the overproduction and underproduction
-            foreach (Prosumer pr in village.Villages)
+            foreach (Village village in nation.Villages)
             {
-                if (pr.smartmeter < 0)
+                int energyForSale = village.VillageMeter;
+                int restFromLast = 0;
+                transactionCounter = 0;
+
+                List<Prosumer> positiveProsumers = new List<Prosumer>();
+                List<Prosumer> negativeProsumers = new List<Prosumer>();
+                List<Transaction> allTransactions = new List<Transaction>();
+
+                //Seperateing the overproduction and underproduction
+                foreach (Prosumer pr in village.Villages)
                 {
-                    negativeProsumers.Add(pr);
-                }
-                else if (pr.smartmeter > 0)
-                {
-                    positiveProsumers.Add(pr);
-                }
-            }
-
-            //Creating the relevant transactions
-            foreach (Prosumer prPos in positiveProsumers)
-            {
-
-                int prPosMeterCount = prPos.smartmeter;
-
-                foreach (Prosumer prNeg in negativeProsumers)
-                {
-                    int prNegMeterCount = prNeg.smartmeter;
-
-                    if (prPosMeterCount > Math.Abs(prNegMeterCount))
+                    if (pr.smartmeter < 0)
                     {
-                        Transaction transaction = new Transaction();
-                        transaction.amount = Math.Abs(prNegMeterCount);
-                        transaction.sellerId = prPos.CopperID;
-                        transaction.buyerId = prNeg.CopperID;
-                        transaction.transactionId = tramsactionIdCounter.ToString();
-                        transaction.sellerType = prPos.prosumerType;
-                        transaction.buyerType = prNeg.prosumerType;
-                        prPosMeterCount -= Math.Abs(prNegMeterCount);
-                        prNegMeterCount = 0;
-                        allTransactions.Add(transaction);
+                        negativeProsumers.Add(pr);
+                    }
+                    else if (pr.smartmeter > 0)
+                    {
+                        positiveProsumers.Add(pr);
+                    }
+                }
+
+                //Creating the relevant transactions
+                foreach (Prosumer prPos in positiveProsumers)
+                {
+
+                    int prPosMeterCount = prPos.smartmeter;
+
+                    foreach (Prosumer prNeg in negativeProsumers.Skip(transactionCounter))
+                    {
+                        int prNegMeterCount = prNeg.smartmeter - restFromLast;
+
+                        if (prPosMeterCount > Math.Abs(prNegMeterCount))
+                        {
+                            Transaction transaction = new Transaction();
+                            transaction.amount = Math.Abs(prNegMeterCount);
+                            transaction.sellerId = prPos.CopperID;
+                            transaction.buyerId = prNeg.CopperID;
+                            transaction.transactionId = tramsactionIdCounter.ToString();
+                            transaction.sellerType = prPos.prosumerType;
+                            transaction.buyerType = prNeg.prosumerType;
+                            transaction.transactionType = "pr2pr";
+                            //prPosMeterCount -= Math.Abs(prNegMeterCount);
+                            restFromLast = prPosMeterCount - Math.Abs(prNegMeterCount);
+                            //prNegMeterCount = 0;
+                            allTransactions.Add(transaction);
+                            tramsactionIdCounter++;
+                            transactionCounter++;
+                        }
+                        else if (prPosMeterCount <= Math.Abs(prNegMeterCount) && (prPosMeterCount != 0))
+                        {
+                            Transaction transaction = new Transaction();
+                            transaction.sellerId = prPos.CopperID;
+                            transaction.buyerId = prNeg.CopperID;
+                            transaction.sellerType = prPos.prosumerType;
+                            transaction.transactionId = tramsactionIdCounter.ToString();
+                            transaction.buyerType = prNeg.prosumerType;
+                            transaction.transactionType = "pr2pr";
+                            transaction.amount = prPosMeterCount;
+                            restFromLast = prPosMeterCount - Math.Abs(prNegMeterCount);
+                            //prNegMeterCount = prNegMeterCount + prPosMeterCount;
+                            allTransactions.Add(transaction);
+                            tramsactionIdCounter++;
+                            transactionCounter++;
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                    }
+                    continue;
+                }
+
+
+                List<Prosumer> restOfPrPos = new List<Prosumer>();
+                foreach (Prosumer pr in positiveProsumers.Skip(transactionCounter - 1))
+                {
+                    restOfPrPos.Add(pr);
+                }
+
+                List<Prosumer> restOfPrNeg = new List<Prosumer>();
+                foreach (Prosumer pr in negativeProsumers.Skip(transactionCounter - 1))
+                {
+                    restOfPrNeg.Add(pr);
+                }
+
+
+
+                // Selling/buying to/from village
+                if (village.VillageMeter > 0)
+                {
+                    foreach (Prosumer pr in restOfPrPos)
+                    {
+                        Transaction tr = new Transaction();
+                        if (restFromLast != 0)
+                        {
+                            tr.amount = restFromLast;
+                        }
+                        else
+                        {
+                            tr.amount = pr.smartmeter;
+                        }
+                        tr.buyerId = village.VillageID.ToString();
+                        tr.sellerId = pr.CopperID;
+                        tr.sellerType = pr.prosumerType;
+                        tr.buyerType = "village";
+                        tr.transactionId = tramsactionIdCounter.ToString();
+                        tr.transactionType = "pr2Village";
+                        allTransactions.Add(tr);
+                        tramsactionIdCounter++;
+                        restFromLast = 0;
+
+
+                    }
+                }
+                else if (village.VillageMeter < 0)
+                {
+                    foreach (Prosumer pr in restOfPrPos)
+                    {
+                        Transaction tr = new Transaction();
+                        tr.amount = pr.smartmeter;
+                        tr.sellerId = village.VillageID.ToString();
+                        tr.buyerId = pr.CopperID;
+                        tr.buyerType = pr.prosumerType;
+                        tr.sellerType = "village";
+                        tr.transactionId = tramsactionIdCounter.ToString();
+                        tr.transactionType = "village2pr";
+                        allTransactions.Add(tr);
                         tramsactionIdCounter++;
                     }
-                    else if (prPosMeterCount < Math.Abs(prNegMeterCount))
-                    {
-                        Transaction transaction = new Transaction();
-                        transaction.sellerId = prPos.CopperID;
-                        transaction.buyerId = prNeg.CopperID;
-                        transaction.sellerType = prPos.prosumerType;
-                        transaction.transactionId = tramsactionIdCounter.ToString();
-                        transaction.buyerType = prNeg.prosumerType;
-                        transaction.amount = prPosMeterCount;
-                        prNegMeterCount = prNegMeterCount + prPosMeterCount;
-                        allTransactions.Add(transaction);
-                        tramsactionIdCounter++;
-                        completedP2PTransactions++;
-                        continue;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                    
                 }
-                continue;
-            }
 
-            int totalProduction = 0;
-            int totalConsumption = 0;
-            int cookerAmount = village.CookerAmount;
-            int cookerCapacity = village.CookerCapacity;
-            int cookerTransferAmount = 0;
 
-            List<Prosumer> restOfPrPos = new List<Prosumer>();
-            for(int i = completedP2PTransactions; i < positiveProsumers.Count; i++)
-            {
-                restOfPrPos.Add(positiveProsumers.ElementAt(i));
-            }
+                //Selling/buying to/from national
+                int cookerAmount = village.CookerAmount;
+                int cookerCapacity = village.CookerCapacity;
 
-            //HERTIL - tanken var at lave en ny transaction for hver prosumer i restOfPr, som overfører til village, så længe cookercapacity er overholdt
-            foreach (Prosumer pr in restOfPrPos)
-            {
-                while (cookerCapacity > cookerAmount)
+                if (village.VillageMeter > 0)
                 {
-                    
+                    Transaction tr = new Transaction();
+                    tr.amount = village.VillageMeter - (cookerCapacity - cookerAmount);
+                    tr.buyerId = nation.NationalID.ToString();
+                    tr.sellerId = village.VillageID.ToString();
+                    tr.sellerType = "village";
+                    tr.buyerType = "nation";
+                    tr.transactionType = "village2Nation";
+                    tr.transactionId = tramsactionIdCounter.ToString();
+                    allTransactions.Add(tr);
                 }
-
-                Transaction tr = new Transaction();
-                tr.amount = pr.smartmeter;
-
-            }
-
-
-            /*
-
-            if (totalProduction > totalConsumption)
-            /*
-                Transaction tr = new Transaction();
-                while (totalProduction - totalConsumption < cookerCapacity - cookerAmount) {
-                    cookerTransferAmount++;
-                    tr.amount = cookerTransferAmount;
-                }
-                if(tr.amount > 0)
+                else if (village.VillageMeter < 0)
                 {
+                    Transaction tr = new Transaction();
+                    tr.amount = village.VillageMeter - cookerAmount;
+                    tr.sellerId = nation.NationalID.ToString();
                     tr.buyerId = village.VillageID.ToString();
-                    tr.sellerId;
+                    tr.buyerType = "village";
+                    tr.sellerType = "nation";
+                    tr.transactionType = "nation2Village";
+                    tr.transactionId = tramsactionIdCounter.ToString();
+                    allTransactions.Add(tr);
+                    tramsactionIdCounter++;
                 }
 
-                Transaction tr = new Transaction();
-                tr.amount = totalProduction - totalConsumption;
-                if(tr.amount < )
-                tr.buyerId =
-                *
-            }
+                foreach (Transaction tr in allTransactions)
+                {
+                    x._SGT_Repository.AddTransaction(tr).Wait();
+                }
 
-
-
-            foreach (Transaction tr in allTransactions)
-            {
-                x._SGT_Repository.AddTransaction(tr).Wait();
             }
 
         }
-        
 
+        /*
         public int doTransaction(int tramsactionIdCounter)
         {
             
@@ -173,7 +224,7 @@ namespace SGT_logic
             x._SGT_Repository.AddTransaction(tr).Wait();
             
 
-        }
+        }*/
     }
-    */
+
 }
