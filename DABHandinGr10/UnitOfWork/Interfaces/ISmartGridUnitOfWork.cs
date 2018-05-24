@@ -7,7 +7,7 @@ using VillageSqlDB.Models;
 
 namespace UnitOfWork.Interfaces
 {
-    public interface ISmartGridUnitOfWork
+    public interface ISmartGridUnitOfWork : IDisposable
     {
         #region Create
         National CreateNational(National nation);

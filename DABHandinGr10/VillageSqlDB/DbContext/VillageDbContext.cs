@@ -13,12 +13,8 @@ namespace VillageSqlDB
     {
         public DbSet<Village> Villages { get; set; }
         public DbSet<National> Nationals { get; set; }
-        public VillageDbContext():base()
-        {
-
-        }
-
-
+        public VillageDbContext() : base("name=ToSrv")
+        { }
 
     }
 }

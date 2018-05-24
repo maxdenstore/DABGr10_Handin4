@@ -11,15 +11,17 @@ using System.Linq;
 using VillageSqlDB;
 using VillageSqlDB.Models;
 using VillageSqlDB.Repositories;
-
+using System.Data.Entity;
 
 namespace UnitOfWork
 {
-    public class SmartGridUnitOfWork : ISmartGridUnitOfWork
+    public class SmartGridUnitOfWork : ISmartGridUnitOfWork 
     {
         #region Setup
         VillageRepository villageRepo = new VillageRepository(new VillageDbContext());
         NationalRepository nationalRepo = new NationalRepository(new VillageDbContext());
+
+
         #endregion
 
 
@@ -182,9 +184,9 @@ namespace UnitOfWork
         #endregion
 
 
-
-
-
-
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -125,6 +125,8 @@ namespace Grp10App
 
             unit.UpdateNational(danmark);
 
+            Console.WriteLine(unit.ReadVillage(Aros.VillageName).VillageName);
+
 
             #endregion
         }
