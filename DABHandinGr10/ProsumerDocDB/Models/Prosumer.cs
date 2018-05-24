@@ -34,7 +34,7 @@ namespace ProsumerDocDB.Models
         public int wallet { get; set; }
         public string prosumerType { get; set; }
 
-        public int villageId { get; set; }
+        public string villageName { get; set; }
 
 
     }
