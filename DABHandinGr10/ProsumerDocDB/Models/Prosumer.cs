@@ -24,8 +24,8 @@ namespace ProsumerDocDB.Models
         }
 
 
-        //[Key]
-       // [JsonProperty(Required = Required.Always, PropertyName = "id")]
+        [Key]
+        [JsonProperty(Required = Required.Always, PropertyName = "id")]
         public string CopperID { get; set; }
 
         public int smartmeter { get; set; }
@@ -34,6 +34,7 @@ namespace ProsumerDocDB.Models
         public int wallet { get; set; }
         public string prosumerType { get; set; }
 
+        public string villageName { get; set; }
 
 
     }
