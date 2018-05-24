@@ -24,8 +24,8 @@ namespace ProsumerDocDB.Models
         }
 
 
-        //[Key]
-       // [JsonProperty(Required = Required.Always, PropertyName = "id")]
+        [Key]
+        [JsonProperty(Required = Required.Always, PropertyName = "id")]
         public string CopperID { get; set; }
 
         public int smartmeter { get; set; }
