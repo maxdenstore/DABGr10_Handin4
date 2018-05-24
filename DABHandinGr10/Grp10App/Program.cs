@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using ProsumerDocDB.Models;
@@ -97,8 +98,24 @@ namespace Grp10App
              */
             #endregion
 
+            #region TestingProsumerInUnitOfWork
+            SmartGridUnitOfWork unit = new SmartGridUnitOfWork();
+            
+            Prosumer testingProsumer = new Prosumer();
+            testingProsumer.CopperID = "testingProsumerID1";
+            testingProsumer.prosumerType = "testingtypeProsumer";
+            testingProsumer.smartmeter = 0;
+            testingProsumer.wallet = 1337;
+
+            var result = unit.CreateProsumer(testingProsumer);
+
+            Console.WriteLine(result.prosumerType);
+            #endregion
+
+
             #region TestingUnitOfWork
 
+            /*
             SmartGridUnitOfWork unit = new SmartGridUnitOfWork();
 
             National danmark = new National();
@@ -126,7 +143,7 @@ namespace Grp10App
             unit.UpdateNational(danmark);
 
             Console.WriteLine(unit.ReadVillage(Aros.VillageName).VillageName);
-
+            */
 
             #endregion
         }

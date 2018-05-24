@@ -12,6 +12,9 @@ using VillageSqlDB;
 using VillageSqlDB.Models;
 using VillageSqlDB.Repositories;
 using System.Data.Entity;
+using ProsumerDocDB.DbContext;
+using ProsumerDocDB.Models;
+using ProsumerDocDB.Repository;
 
 namespace UnitOfWork
 {
@@ -20,12 +23,25 @@ namespace UnitOfWork
         #region Setup
         VillageRepository villageRepo = new VillageRepository(new VillageDbContext());
         NationalRepository nationalRepo = new NationalRepository(new VillageDbContext());
-
+        ProsumerRepository prosumerRepo = new ProsumerRepository(new ProsumerDbContext());
 
         #endregion
 
 
         #region Create
+
+        public Prosumer CreateProsumer(Prosumer prosumer)
+        {
+            if (prosumer != null)
+            {
+                prosumerRepo.AddProsumer(prosumer).Wait();
+                return prosumerRepo.GetProsumerByCopperID(prosumer.CopperID);
+            }
+
+            return null;
+        }
+
+
         /// <summary>
         /// Creates a nation
         /// </summary>
