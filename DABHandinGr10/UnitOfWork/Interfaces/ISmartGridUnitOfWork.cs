@@ -28,8 +28,8 @@ namespace UnitOfWork.Interfaces
 
 
         #region Delete
-        National DeleteNational(string nationName);
-        Village DeleteVillage(string VillageName);
+        void DeleteNational(string nationName);
+        void DeleteVillage(string VillageName);
 
         #endregion
 
