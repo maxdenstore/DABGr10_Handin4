@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGT_TestApp", "SGT_TestApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillageSqlDB_API", "VillageSqlDB_API\VillageSqlDB_API.csproj", "{D3D55E70-4D01-46C2-8253-61102FE0A73D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProsumerDocDB_API", "ProsumerDocDB_API\ProsumerDocDB_API.csproj", "{BD1DF5FC-5450-40E0-B02C-F07A815074BD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,16 +63,12 @@ Global
 		{D3D55E70-4D01-46C2-8253-61102FE0A73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3D55E70-4D01-46C2-8253-61102FE0A73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3D55E70-4D01-46C2-8253-61102FE0A73D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD1DF5FC-5450-40E0-B02C-F07A815074BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD1DF5FC-5450-40E0-B02C-F07A815074BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD1DF5FC-5450-40E0-B02C-F07A815074BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD1DF5FC-5450-40E0-B02C-F07A815074BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 		SolutionGuid = {24A8D4EF-1BDA-4D9A-AB38-CE3AE5E525E9}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
 	EndGlobalSection
 EndGlobal

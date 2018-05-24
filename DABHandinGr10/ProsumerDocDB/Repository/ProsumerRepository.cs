@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
+using ProsumerDocDB.Models;
 
 namespace ProsumerDocDB.Repository
 {
@@ -43,11 +44,21 @@ namespace ProsumerDocDB.Repository
             return prosumer;
         }
 
+        public List<Prosumer> GetALL(string villageName)
+        {
+            var prosumers = _Context.client.CreateDocumentQuery<Prosumer>(_Context.ProsumorCollection.DocumentsLink).Where(x=> x.villageName == villageName)
+                .AsEnumerable().ToList();
+
+
+            return prosumers;
+        }
+
         public void DeleteProsumer(string CopperID)
         {
             Document doc = GetDoc(CopperID);
             if( doc != null)
             {
+         
                 _Context.client.DeleteDocumentAsync(doc.SelfLink).Wait();
             }
         }
