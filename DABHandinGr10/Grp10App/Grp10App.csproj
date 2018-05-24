@@ -57,10 +57,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProsumerDocDB\ProsumerDocDB.csproj">
-      <Project>{1601115c-9f1b-4b02-9b5a-8e940e8f0948}</Project>
-      <Name>ProsumerDocDB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SGT_DocDB\SGT_DocDB.csproj">
       <Project>{0d189879-48ef-4fa9-b26e-521e8d923330}</Project>
       <Name>SGT_DocDB</Name>
