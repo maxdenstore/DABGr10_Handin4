@@ -23,7 +23,7 @@ namespace ProsumerTestApp
                 .ProsumerDocumentDBUnitOfWork(new ProsumerDocDB.DbContext.ProsumerDbContext());
 
             x._prosumerRepository.AddProsumer(prosumer).Wait();
-            x._prosumerRepository.DeleteProsumer("4");
+            //x._prosumerRepository.DeleteProsumer("4");
 
         }
     }

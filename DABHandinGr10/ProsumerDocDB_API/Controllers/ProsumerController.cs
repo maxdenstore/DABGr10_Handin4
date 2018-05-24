@@ -1,4 +1,5 @@
-﻿using ProsumerDocDB.DbContext;
+﻿using DocumentDB.Repository;
+using ProsumerDocDB.DbContext;
 using ProsumerDocDB.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace ProsumerDocDB_API.Controllers
 
         // GET: api/Prosumer/5
         [ResponseType(typeof(Prosumer))]
-        public async Task<IHttpActionResult> Get(string id)
+        public IHttpActionResult Get(string id)
         {
             Prosumer prosumer = db._prosumerRepository.GetProsumerByCopperID(id);
 
@@ -31,7 +32,7 @@ namespace ProsumerDocDB_API.Controllers
 
         // POST: api/Prosumer
         [ResponseType(typeof(Prosumer))]
-        public async Task<IHttpActionResult> Post(Prosumer prosumer)
+        public IHttpActionResult Post(Prosumer prosumer)
         {
             if (!ModelState.IsValid)
             {
@@ -39,7 +40,7 @@ namespace ProsumerDocDB_API.Controllers
             }
 
             db._prosumerRepository.AddProsumer(prosumer).Wait();
-                
+
             return CreatedAtRoute("DefaultApi", new { id = prosumer.CopperID }, prosumer);
         }
 
@@ -80,7 +81,7 @@ namespace ProsumerDocDB_API.Controllers
 
         // DELETE: api/Prosumer/5
         [ResponseType(typeof(Prosumer))]
-        public async Task<IHttpActionResult> Delete(string id)
+        public IHttpActionResult Delete(string id)
         {
             Prosumer prosumer = db._prosumerRepository.GetProsumerByCopperID(id);
 
