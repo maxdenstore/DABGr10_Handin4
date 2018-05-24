@@ -9,6 +9,7 @@ using VillageSqlDB.Models;
 
 namespace SGT_logic
 {
+    /*
     public class Class1 {
 
 
@@ -25,7 +26,7 @@ namespace SGT_logic
          * delete transaction from ongoing
          * do it all over again
          */
-
+         /*
         private SGT_DocDB.DBContext.SGT_DocDBUnitOfWork x;
         private int tramsactionIdCounter = 0;
         private int completedP2PTransactions = 0;
@@ -131,10 +132,10 @@ namespace SGT_logic
             }
 
 
-            
+            /*
 
             if (totalProduction > totalConsumption)
-            {
+            /*
                 Transaction tr = new Transaction();
                 while (totalProduction - totalConsumption < cookerCapacity - cookerAmount) {
                     cookerTransferAmount++;
@@ -150,6 +151,7 @@ namespace SGT_logic
                 tr.amount = totalProduction - totalConsumption;
                 if(tr.amount < )
                 tr.buyerId =
+                *
             }
 
 
@@ -173,4 +175,5 @@ namespace SGT_logic
 
         }
     }
+    */
 }

@@ -20,59 +20,60 @@ namespace Grp10App
         {
 
             #region SQL local setup Village ( goes to unit of work )
-          /*
-            VillageRepository villageRepo = new VillageRepository(new VillageDbContext());
-            NationalRepository nationalRepo = new NationalRepository(new VillageDbContext());
+            /*
+              VillageRepository villageRepo = new VillageRepository(new VillageDbContext());
+              NationalRepository nationalRepo = new NationalRepository(new VillageDbContext());
 
-            //try add a village
-
-
-
-            var villages = villageRepo.GetAllAsync().Result.ToList();
-
-            if (villages.Count < 1) //make sure i dont over populate db
-            {
-                //make national
-                National danmark = new National();
-        
+              //try add a village
 
 
 
+              var villages = villageRepo.GetAllAsync().Result.ToList();
 
-                Village village = new Village();
-                village.CookerAmount = 5;
-                village.CookerCapacity = 5;
-                village.VillageMeter = 100;
-
-                
-
-                Prosumer firstProsumer = new Prosumer();
-                firstProsumer.prosumerType = "Prosumer";
-                firstProsumer.smartmeter = 10;
-
-
-                village.Villages.Add(firstProsumer);
-                danmark.Villages.Add(village);
+              if (villages.Count < 1) //make sure i dont over populate db
+              {
+                  //make national
+                  National danmark = new National();
 
 
 
-                nationalRepo.InsertNational(danmark);
-                villageRepo.InsertVillage(village);
 
-               
 
-                nationalRepo.Save();
-                villageRepo.Save();
-            }
+                  Village village = new Village();
+                  village.CookerAmount = 5;
+                  village.CookerCapacity = 5;
+                  village.VillageMeter = 100;
 
 
 
-    */
+                  Prosumer firstProsumer = new Prosumer();
+                  firstProsumer.prosumerType = "Prosumer";
+                  firstProsumer.smartmeter = 10;
+
+
+                  village.Villages.Add(firstProsumer);
+                  danmark.Villages.Add(village);
+
+
+
+                  nationalRepo.InsertNational(danmark);
+                  villageRepo.InsertVillage(village);
+
+
+
+                  nationalRepo.Save();
+                  villageRepo.Save();
+              }
+
+
+
+      */
 
             #endregion
 
 
             #region UnitofWork
+            /*
             SmartGridUnitOfWork unit = new SmartGridUnitOfWork();
             
             National unitofWorkNation = new National();
@@ -93,9 +94,39 @@ namespace Grp10App
 
             unit.UpdateVillage(unitofworkVillage);
 
-
+             */
             #endregion
 
+            #region TestingUnitOfWork
+
+            SmartGridUnitOfWork unit = new SmartGridUnitOfWork();
+
+            National danmark = new National();
+            danmark.NationName = "Danmark";
+
+            National Sverige = new National();
+            Sverige.NationName = "sverige";
+
+            unit.CreateNational(Sverige);
+            unit.CreateNational(danmark);
+
+            unit.DeleteNational(Sverige.NationName); //bye bye
+
+            Village Aros = new Village();
+            Aros.CookerAmount = 200;
+            Aros.CookerCapacity = 200;
+            Aros.CookerConsumption = 200;
+            Aros.VillageMeter = 0;
+            Aros.VillageName = "Aros";
+
+            danmark.Villages.Add(Aros);
+
+            unit.CreateVillage(Aros,danmark.NationName);
+
+            unit.UpdateNational(danmark);
+
+
+            #endregion
         }
     }
 }

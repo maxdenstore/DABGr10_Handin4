@@ -68,7 +68,6 @@ namespace VillageSqlDB.Repositories
             context.Nationals.AddOrUpdate(National);
             Save();
 
-
         }
 
         public  void Save()
