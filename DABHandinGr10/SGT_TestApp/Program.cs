@@ -49,7 +49,7 @@ namespace SGT_TestApp
 
             //x._SGT_Repository.DeleteTransaction(trans.transactionId);
 
-            //y._SGT_Repository.AddTransaction(trans1).Wait();
+            y._SGT_Repository.AddTransaction(trans1).Wait();
 
             var getTrans = y._SGT_Repository.GetTransactionById("2");
 
