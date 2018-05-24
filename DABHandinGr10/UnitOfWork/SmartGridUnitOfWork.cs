@@ -41,7 +41,6 @@ namespace UnitOfWork
             return null;
         }
 
-
         /// <summary>
         /// Creates a nation
         /// </summary>
@@ -130,7 +129,21 @@ namespace UnitOfWork
         /// <returns>if any, returns village, otherwise returns 0</returns>
         public Village ReadVillage(string VillageNamed)
         {
-            return villageRepo.FirstAsync(v => v.VillageName == VillageNamed).Result;
+            //first get the village
+            var village = villageRepo.FirstAsync(v => v.VillageName == VillageNamed).Result;
+            //now get all prosumers that matches the name of village!
+            var prosumers = prosumerRepo.GetALL(VillageNamed);
+
+            
+
+            //build together
+            foreach (var VARIABLE in prosumers)
+            {
+                village.Villages.Add(VARIABLE);
+            }
+
+            // return the village
+            return village;
         }
 
         #endregion

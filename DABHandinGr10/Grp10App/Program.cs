@@ -99,6 +99,7 @@ namespace Grp10App
             #endregion
 
             #region TestingProsumerInUnitOfWork
+            /*
             SmartGridUnitOfWork unit = new SmartGridUnitOfWork();
             
             Prosumer testingProsumer = new Prosumer();
@@ -107,15 +108,17 @@ namespace Grp10App
             testingProsumer.smartmeter = 0;
             testingProsumer.wallet = 1337;
 
+
             var result = unit.CreateProsumer(testingProsumer);
 
             Console.WriteLine(result.prosumerType);
+            */
             #endregion
 
 
             #region TestingUnitOfWork
 
-            /*
+            
             SmartGridUnitOfWork unit = new SmartGridUnitOfWork();
 
             National danmark = new National();
@@ -143,7 +146,29 @@ namespace Grp10App
             unit.UpdateNational(danmark);
 
             Console.WriteLine(unit.ReadVillage(Aros.VillageName).VillageName);
-            */
+            
+            Console.WriteLine("adding prosumers to aros");
+
+            Prosumer testingProsumer = new Prosumer();
+            testingProsumer.CopperID = "testingProsumerID3";
+            testingProsumer.prosumerType = "testingtypeProsumer";
+            testingProsumer.smartmeter = 0;
+            testingProsumer.wallet = 1337;
+            testingProsumer.villageName = Aros.VillageName;
+
+
+            var result = unit.CreateProsumer(testingProsumer);
+
+            Console.WriteLine("added prosumer to db: " + result.prosumerType);
+
+            //now get village where prosumer should be there!
+
+            var updatedvillage = unit.ReadVillage(Aros.VillageName);
+
+            foreach (var VARIABLE in updatedvillage.Villages)
+            {
+                Console.WriteLine("prosumers in aros smartmeters: "+ VARIABLE.smartmeter);
+            }
 
             #endregion
         }
