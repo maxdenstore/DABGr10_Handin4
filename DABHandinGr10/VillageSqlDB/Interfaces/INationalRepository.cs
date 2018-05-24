@@ -10,15 +10,20 @@ namespace VillageSqlDB.Interfaces
 {
     public interface INationalRepository
     {
-        IEnumerable<National> GetAll();
+        Task<List<National>> GetAll();
+ 
 
-        IEnumerable<National> Find(Expression<Func<National, bool>> prediExpression);
+        Task<List<National>> FindAsync(Expression<Func<National, bool>> prediExpression);
 
-        National SingleOrDefault(Expression<Func<National, bool>> prediExpression);
 
-        National First(Expression<Func<National, bool>> prediExpression);
+        Task<National> SingleOrDefaultAsync(Expression<Func<National, bool>> prediExpression);
 
-        National GetNationalByID(int NationalId);
+
+        Task<National> FirstAsync(Expression<Func<National, bool>> prediExpression);
+
+
+        Task<National> GetNationalByIDAsync(int NationalId);
+
 
         void InsertNational(National National);
 
