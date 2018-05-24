@@ -11,8 +11,21 @@ namespace ProsumerDocDB.Models
 {
     public class Prosumer : IProsumer
     {
-        [Key]
-        [JsonProperty(Required = Required.Always, PropertyName = "id")]
+        public  Prosumer()
+        { }
+
+        public Prosumer(Prosumer prosumer)
+        {
+            CopperID = prosumer.CopperID;
+            smartmeter = prosumer.smartmeter;
+            wallet = prosumer.wallet;
+            prosumerType = prosumer.prosumerType;
+
+        }
+
+
+        //[Key]
+       // [JsonProperty(Required = Required.Always, PropertyName = "id")]
         public string CopperID { get; set; }
 
         public int smartmeter { get; set; }

@@ -18,7 +18,7 @@ namespace ProsumerDocDB_API.Controllers
 
         // GET: api/Prosumer/5
         [ResponseType(typeof(Prosumer))]
-        public IHttpActionResult Get(string id)
+        public async Task<IHttpActionResult> Get(string id)
         {
             Prosumer prosumer = db._prosumerRepository.GetProsumerByCopperID(id);
 
@@ -27,12 +27,12 @@ namespace ProsumerDocDB_API.Controllers
                 return NotFound();
             }
 
-            return Ok(prosumer);
+            return Ok(new Prosumer(prosumer));
         }
 
         // POST: api/Prosumer
         [ResponseType(typeof(Prosumer))]
-        public IHttpActionResult Post(Prosumer prosumer)
+        public async Task<IHttpActionResult> Post(Prosumer prosumer)
         {
             if (!ModelState.IsValid)
             {
