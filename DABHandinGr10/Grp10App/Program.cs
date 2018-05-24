@@ -163,7 +163,12 @@ namespace Grp10App
 
             //now get village where prosumer should be there!
 
-            unit.ReadVillage(Aros.VillageName);
+            var updatedvillage = unit.ReadVillage(Aros.VillageName);
+
+            foreach (var VARIABLE in updatedvillage.Villages)
+            {
+                Console.WriteLine("prosumers in aros smartmeters: "+ VARIABLE.smartmeter);
+            }
 
             #endregion
         }
