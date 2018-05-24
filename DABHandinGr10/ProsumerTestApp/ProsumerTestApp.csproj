@@ -56,5 +56,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProsumerDocDB\ProsumerDocDB.csproj">
+      <Project>{1601115c-9f1b-4b02-9b5a-8e940e8f0948}</Project>
+      <Name>ProsumerDocDB</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

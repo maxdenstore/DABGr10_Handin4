@@ -303,6 +303,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProsumerDocDB\ProsumerDocDB.csproj">
+      <Project>{1601115c-9f1b-4b02-9b5a-8e940e8f0948}</Project>
+      <Name>ProsumerDocDB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VillageSqlDB\VillageSqlDB.csproj">
       <Project>{807e1b8f-1276-4274-a41a-0e732d03c37a}</Project>
       <Name>VillageSqlDB</Name>
