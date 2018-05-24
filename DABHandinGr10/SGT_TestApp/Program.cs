@@ -45,13 +45,15 @@ namespace SGT_TestApp
             SGT_DocDB.DBContext.SGT_DocDBUnitOfWork y =
                 new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("onGoing"));
 
-            x._SGT_Repository.AddTransaction(trans).Wait();
+            //x._SGT_Repository.AddTransaction(trans).Wait();
 
-            x._SGT_Repository.DeleteTransaction(trans.transactionId);
+            //x._SGT_Repository.DeleteTransaction(trans.transactionId);
 
-            y._SGT_Repository.AddTransaction(trans1).Wait();
+            //y._SGT_Repository.AddTransaction(trans1).Wait();
 
-            y._SGT_Repository.GetTransactionById("2");
+            var getTrans = y._SGT_Repository.GetTransactionById("2");
+
+            Console.WriteLine("transactionId: " + getTrans.transactionId + ", amount: " + getTrans.amount);
 
             y._SGT_Repository.DeleteTransaction("2");
             
