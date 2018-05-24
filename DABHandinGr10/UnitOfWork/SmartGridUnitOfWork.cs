@@ -11,15 +11,17 @@ using System.Linq;
 using VillageSqlDB;
 using VillageSqlDB.Models;
 using VillageSqlDB.Repositories;
-
+using System.Data.Entity;
 
 namespace UnitOfWork
 {
-    public class SmartGridUnitOfWork : ISmartGridUnitOfWork
+    public class SmartGridUnitOfWork : ISmartGridUnitOfWork 
     {
         #region Setup
         VillageRepository villageRepo = new VillageRepository(new VillageDbContext());
         NationalRepository nationalRepo = new NationalRepository(new VillageDbContext());
+
+
         #endregion
 
 
@@ -95,11 +97,21 @@ namespace UnitOfWork
 
 
         #region Read
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nationName"></param>
+        /// <returns></returns>
         public National ReadNational(string nationName)
         {
             return nationalRepo.FirstAsync(national => national.NationName == nationName).Result;
         }
 
+        /// <summary>
+        /// find a village from its name
+        /// </summary>
+        /// <param name="VillageNamed">the name to search</param>
+        /// <returns>if any, returns village, otherwise returns 0</returns>
         public Village ReadVillage(string VillageNamed)
         {
             return villageRepo.FirstAsync(v => v.VillageName == VillageNamed).Result;
@@ -109,39 +121,72 @@ namespace UnitOfWork
 
 
         #region Update
+        /// <summary>
+        /// Update an exsisting nation, or adds the nation if it dosent exsist
+        /// </summary>
+        /// <param name="updated">the updated nation</param>
+        /// <returns></returns>
         public National UpdateNational(National updated)
         {
 
             nationalRepo.UpdateNational(updated);
+
+            //update prosumers too in villages DOCDB
     
             return updated;
         }
 
+        /// <summary>
+        /// updates an exsisting village, or adds the village if it dosent exsist
+        /// </summary>
+        /// <param name="Updated">the updated village</param>
+        /// <returns></returns>
         public Village UpdateVillage(Village Updated)
         {
 
             villageRepo.UpdateVillage(Updated);
+
+            //update prosumers in village too docDB
 
             return Updated;
         }
         #endregion
 
         #region Delete
-        public National DeleteNational(string nationName)
+        /// <summary>
+        /// Deletes all nations with the specified name
+        /// </summary>
+        /// <param name="nationName">name to delete</param>
+        public void DeleteNational(string nationName)
         {
-            throw new System.NotImplementedException();
+            var tempNations = nationalRepo.FindAsync(x => x.NationName == nationName).Result.ToList();
+
+            if (tempNations.Count > 0)
+            {
+                foreach (var VARIABLE in tempNations)
+                {
+                    nationalRepo.DeleteNational(VARIABLE.NationalID);
+                }
+
+                nationalRepo.Save();
+            }
+
+            //delete prosumers too DOCDB
+
+
+
         }
 
-        public Village DeleteVillage(string VillageName)
+        public void DeleteVillage(string VillageName)
         {
             throw new System.NotImplementedException();
         }
         #endregion
 
 
-
-
-
-
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
