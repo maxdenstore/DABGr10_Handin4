@@ -33,7 +33,7 @@ namespace SGT_logic
 
         public Class1()
         {
-            x = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
+            //x = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
         }
 
 
@@ -82,14 +82,14 @@ namespace SGT_logic
                             transaction.sellerType = prPos.prosumerType;
                             transaction.buyerType = prNeg.prosumerType;
                             transaction.transactionType = "pr2pr";
-                            //prPosMeterCount -= Math.Abs(prNegMeterCount);
+                            prPosMeterCount -= Math.Abs(prNegMeterCount);
                             restFromLast = prPosMeterCount - Math.Abs(prNegMeterCount);
                             //prNegMeterCount = 0;
                             allTransactions.Add(transaction);
                             tramsactionIdCounter++;
                             transactionCounter++;
                         }
-                        else if (prPosMeterCount <= Math.Abs(prNegMeterCount) && (prPosMeterCount != 0))
+                        else if ((prPosMeterCount <= Math.Abs(prNegMeterCount)) && (prPosMeterCount != 0))
                         {
                             Transaction transaction = new Transaction();
                             transaction.sellerId = prPos.CopperID;
@@ -99,11 +99,10 @@ namespace SGT_logic
                             transaction.buyerType = prNeg.prosumerType;
                             transaction.transactionType = "pr2pr";
                             transaction.amount = prPosMeterCount;
+                            prNegMeterCount = prNegMeterCount + prPosMeterCount;
                             restFromLast = prPosMeterCount - Math.Abs(prNegMeterCount);
-                            //prNegMeterCount = prNegMeterCount + prPosMeterCount;
                             allTransactions.Add(transaction);
                             tramsactionIdCounter++;
-                            transactionCounter++;
                             break;
                         }
                         else
