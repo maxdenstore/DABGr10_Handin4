@@ -33,16 +33,16 @@ namespace ProsumerDocDB.DbContext
             }
             finally
             {
-                Console.WriteLine("End of Program");
+                //Console.WriteLine("End of Program");
             }
         }
 
         private async Task LoadDB()
         {
             client = new DocumentClient(new Uri(_endPointUrl), _PrimaryKey);
-            await client.CreateDatabaseIfNotExistsAsync(new Database { Id = _Database });
-            ProsumorCollection = await client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(_Database), 
-                new DocumentCollection { Id = _Database});
+            client.CreateDatabaseIfNotExistsAsync(new Database { Id = _Database });
+            ProsumorCollection = client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(_Database), 
+                new DocumentCollection { Id = _Database}).Result;
 
 
         }

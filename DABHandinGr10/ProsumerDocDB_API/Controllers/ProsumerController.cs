@@ -9,12 +9,25 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 
 namespace ProsumerDocDB_API.Controllers
 {
     public class ProsumerController : ApiController
     {
         private ProsumerDocumentDBUnitOfWork db = new ProsumerDocumentDBUnitOfWork(new ProsumerDbContext());
+
+
+        //GET: all
+
+        public OkNegotiatedContentResult<IQueryable<Prosumer>> GetVillages()
+        {
+            IQueryable<Prosumer> prosumer = db._prosumerRepository.GetALL("Aros").AsQueryable();
+
+
+            return Ok(prosumer);
+        }
+
 
         // GET: api/Prosumer/5
         [ResponseType(typeof(Prosumer))]
