@@ -131,16 +131,21 @@ namespace UnitOfWork
         {
             //first get the village
             var village = villageRepo.FirstAsync(v => v.VillageName == VillageNamed).Result;
+
+
             //now get all prosumers that matches the name of village!
             var prosumers = prosumerRepo.GetALL(VillageNamed);
 
-            
 
-            //build together
-            foreach (var VARIABLE in prosumers)
+            if (prosumers != null)
             {
-                village.Villages.Add(VARIABLE);
+                //build together
+                foreach (var VARIABLE in prosumers)
+                {
+                    village.Villages.Add(VARIABLE);
+                }
             }
+
 
             // return the village
             return village;
