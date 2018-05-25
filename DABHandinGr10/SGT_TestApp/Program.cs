@@ -58,6 +58,8 @@ namespace SGT_TestApp
 
             village.CookerAmount = 1;
             village.CookerCapacity = 32;
+            Random rnd = new Random();
+            int month = rnd.Next(1, 16);
             village.CookerConsumption = 3;
             village.VillageID = 3;
             village.VillageMeter = prosumer1.smartmeter + prosumer2.smartmeter + prosumer3.smartmeter + prosumer4.smartmeter;
