@@ -39,7 +39,12 @@ namespace VillageSqlDB.Repositories
 
         public Task<Village> FirstAsync(Expression<Func<Village, bool>> prediExpression)
         {
-            return context.Villages.FirstAsync(prediExpression);
+            if (context.Villages.Any(prediExpression))
+            {
+                return context.Villages.FirstAsync(prediExpression);
+            }
+
+            return null;
         }
 
         public Task<Village> GetVillageByIDAsync(int villageId)
