@@ -59,11 +59,21 @@ namespace ProsumerDocDB.Repository
 
         public List<Prosumer> GetALL(string villageName)
         {
-            var prosumers = _Context.client.CreateDocumentQuery<Prosumer>(_Context.ProsumorCollection.DocumentsLink).Where(x=> x.villageName == villageName)
-                .AsEnumerable().ToList();
+            try
+            {
+                var prosumers = _Context.client.CreateDocumentQuery<Prosumer>(_Context.ProsumorCollection.DocumentsLink)
+                    .Where(x => x.villageName == villageName)
+                    .AsEnumerable().ToList();
+                return prosumers;
+
+            }
+            catch (Exception e)
+            {
+                return null;
 
 
-            return prosumers;
+
+            }
         }
 
         public void DeleteProsumer(string CopperID)
