@@ -21,7 +21,7 @@ namespace SGT_TestApp
             Random rnd = new Random();
 
 
-            sgt_Logic class1 = new sgt_Logic();
+            Class1 class1 = new Class1();
             Village village = new Village();
             National national = new National();
             ICollection<Prosumer> prosumers = new List<Prosumer>();
@@ -97,16 +97,16 @@ namespace SGT_TestApp
             village.CookerConsumption = 3;
             village.VillageID = 3;
             //   village.VillageMeter = prosumer1.smartmeter + prosumer2.smartmeter + prosumer3.smartmeter + prosumer4.smartmeter;
-            village.VillageName = "Aros";
+            village.VillageName = "lol";
             village.Villages = prosumers;
 
             national.Villages.Add(village);
             national.NationalID = 2;
-            national.NationName = "Nation";
+            national.NationName = "hej";
 
             class1.addTransactions(national);
 
-            class1.doTransaction(4, "Aros");
+            class1.doTransaction(4, "lol");
 
             Transaction trans = new Transaction
             {
@@ -130,10 +130,7 @@ namespace SGT_TestApp
             };
 
 
-            sgt_Logic transactioner = new sgt_Logic();
 
-            transactioner.addTransactions(national);
-            transactioner.doTransaction(20, "Aros");
 
 
             //SGT_DocDB.DBContext.SGT_DocDBUnitOfWork x =

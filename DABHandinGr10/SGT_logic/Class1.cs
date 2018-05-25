@@ -10,7 +10,7 @@ using VillageSqlDB.Models;
 namespace SGT_logic
 {
 
-    public class sgt_Logic
+    public class Class1
     {
 
 
@@ -37,7 +37,7 @@ namespace SGT_logic
         private int prPositiveCounter = 0;
         private int prNegativeCounter = 0;
 
-        public sgt_Logic()
+        public Class1()
         {
             x = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
             onGoing = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("onGoing"));
