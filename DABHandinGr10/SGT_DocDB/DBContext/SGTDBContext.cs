@@ -20,11 +20,11 @@ namespace SGT_DocDB.DBContext
 
         public DocumentClient client { get; set; }
 
-        //private const string _endPointUrl = "https://f18i4dab.documents.azure.com:443/";
-        //private const string _PrimaryKey = "vmbfFVnIqKYcdYCVRqHXDpkqh471dqeELczO4rbVKoYpI5NUJ4D34DegxTFTS4FhNiCw6B477WVqhjqNABSdow==";
+        private const string _endPointUrl = "https://f18i4dab.documents.azure.com:443/";
+        private const string _PrimaryKey = "vmbfFVnIqKYcdYCVRqHXDpkqh471dqeELczO4rbVKoYpI5NUJ4D34DegxTFTS4FhNiCw6B477WVqhjqNABSdow==";
 
-        private const string _endPointUrl = "https://localhost:8081/";
-        private const string _PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+      //  private const string _endPointUrl = "https://localhost:8081/";
+       // private const string _PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
         private const string _Database = "F18I4DABH4Gr10";
         private string _Collection;
         private const string _upcomingCollection = "upcomingTransactionsCollection";
