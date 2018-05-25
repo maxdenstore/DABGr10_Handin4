@@ -142,7 +142,7 @@ namespace SGT_logic
                     restOfPrNeg.Add(pr);
                 }
 
-                int cookerAmount = village.CookerAmount;
+                int cookerAmount = village.CookerAmount - village.CookerConsumption;
                 int cookerCapacity = village.CookerCapacity;
 
                 // Selling/buying to/from village
