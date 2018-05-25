@@ -28,13 +28,13 @@ namespace SGT_TestApp
             Prosumer prosumer2 = new Prosumer();
             prosumer2.CopperID = "2";
             prosumer2.prosumerType = "prosumer";
-            prosumer2.smartmeter = -3;
+            prosumer2.smartmeter = -2;
             prosumer2.wallet = 3;
 
             Prosumer prosumer3 = new Prosumer();
             prosumer3.CopperID = "3";
             prosumer3.prosumerType = "prosumer";
-            prosumer3.smartmeter = 17;
+            prosumer3.smartmeter = -1;
             prosumer3.wallet = 3;
 
             Prosumer prosumer4 = new Prosumer();
