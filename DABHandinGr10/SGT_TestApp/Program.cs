@@ -72,7 +72,7 @@ namespace SGT_TestApp
 
             class1.addTransactions(national);
 
-            class1.doTransaction(4, "lol");
+            class1.doTransaction(4, "Aros");
 
             Transaction trans = new Transaction
             {

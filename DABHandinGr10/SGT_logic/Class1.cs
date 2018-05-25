@@ -300,9 +300,9 @@ namespace SGT_logic
                 previous._SGT_Repository.AddTransaction(tr).Wait();
 
                 onGoing._SGT_Repository.DeleteTransaction(tr.transactionId);
-
                 tr = x._SGT_Repository.GetTransactionById(tempTransactionIdCounter.ToString());
             }
+
 
 
             return 0;

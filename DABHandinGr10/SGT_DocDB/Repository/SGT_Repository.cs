@@ -42,7 +42,7 @@ namespace SGT_DocDB.Repository
 
             if(sgt== null)
             {
-                throw new ArgumentException("Transaction does not exsist");
+                return null;
             }
             return sgt;
         }
