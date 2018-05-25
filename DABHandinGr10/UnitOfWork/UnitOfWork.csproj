@@ -65,10 +65,6 @@
       <Project>{0d189879-48ef-4fa9-b26e-521e8d923330}</Project>
       <Name>SGT_DocDB</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SGT_logic\SGT_logic.csproj">
-      <Project>{724365c5-d12f-446e-8871-87d9637133ff}</Project>
-      <Name>SGT_logic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VillageSqlDB\VillageSqlDB.csproj">
       <Project>{807e1b8f-1276-4274-a41a-0e732d03c37a}</Project>
       <Name>VillageSqlDB</Name>

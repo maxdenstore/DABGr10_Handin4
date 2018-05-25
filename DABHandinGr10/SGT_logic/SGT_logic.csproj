@@ -52,6 +52,10 @@
       <Project>{0d189879-48ef-4fa9-b26e-521e8d923330}</Project>
       <Name>SGT_DocDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj">
+      <Project>{4601fb15-53e0-4c15-ac32-c5b192a65647}</Project>
+      <Name>UnitOfWork</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VillageSqlDB\VillageSqlDB.csproj">
       <Project>{807e1b8f-1276-4274-a41a-0e732d03c37a}</Project>
       <Name>VillageSqlDB</Name>

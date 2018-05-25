@@ -22,14 +22,16 @@ namespace ProsumerTestApp
             ProsumerDocumentDBUnitOfWork x = new ProsumerDocDB.DbContext
                 .ProsumerDocumentDBUnitOfWork(new ProsumerDocDB.DbContext.ProsumerDbContext());
 
-          //  x._prosumerRepository.AddProsumer(prosumer).Wait();
+            x._prosumerRepository.AddProsumer(prosumer).Wait();
            var test = x._prosumerRepository.GetProsumerByCopperID(prosumer.CopperID);
 
             var test2 = x._prosumerRepository.GetProsumerByCopperID("4");
-
-
+            prosumer.wallet = 100;
+            prosumer.smartmeter = 0;
+            x._prosumerRepository.Update(prosumer);
               Console.WriteLine("CopperID: " + test.CopperID + "\n" + "Prosumer Type: "+ test.prosumerType + "\n" + "SmartMeter: " + test.smartmeter +"\n" + "Wallet: " +test.wallet + "\n");
             Console.WriteLine("CopperID: " + test2.CopperID + "\n" + "Prosumer Type: " + test2.prosumerType + "\n" + "SmartMeter: " + test2.smartmeter + "\n" + "Wallet: " + test2.wallet + "\n");
+
 
             //x._prosumerRepository.DeleteProsumer("4");
 
