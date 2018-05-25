@@ -28,7 +28,7 @@ namespace SGT_TestApp
             Prosumer prosumer2 = new Prosumer();
             prosumer2.CopperID = "2";
             prosumer2.prosumerType = "prosumer";
-            prosumer2.smartmeter = -2;
+            prosumer2.smartmeter = -4;
             prosumer2.wallet = 3;
 
             Prosumer prosumer3 = new Prosumer();
@@ -48,7 +48,7 @@ namespace SGT_TestApp
             prosumers.Add(prosumer3);
             prosumers.Add(prosumer4);
 
-            village.CookerAmount = 30;
+            village.CookerAmount = 1;
             village.CookerCapacity = 32;
             village.CookerConsumption = 3;
             village.VillageID = 3;
