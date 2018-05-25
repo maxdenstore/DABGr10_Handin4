@@ -34,7 +34,8 @@ namespace SGT_logic
         private UnitOfWork.SmartGridUnitOfWork unitOfWork; 
 
         private int tramsactionIdCounter = 0;
-        private int transactionCounter = 0;
+        private int prPositiveCounter = 0;
+        private int prNegativeCounter = 0;
 
         public Class1()
         {
@@ -52,7 +53,6 @@ namespace SGT_logic
             {
                 int energyForSale = village.VillageMeter;
                 int restFromLast = 0;
-                transactionCounter = 0;
 
                 List<Prosumer> positiveProsumers = new List<Prosumer>();
                 List<Prosumer> negativeProsumers = new List<Prosumer>();
@@ -77,12 +77,14 @@ namespace SGT_logic
 
                     int prPosMeterCount = prPos.smartmeter;
 
-                    foreach (Prosumer prNeg in negativeProsumers.Skip(transactionCounter))
+                    foreach (Prosumer prNeg in negativeProsumers.Skip(prNegativeCounter))
                     {
-                        int prNegMeterCount = prNeg.smartmeter - restFromLast;
+
+                        int prNegMeterCount = prNeg.smartmeter;
 
                         if (prPosMeterCount > Math.Abs(prNegMeterCount))
                         {
+                            prNegMeterCount = prNeg.smartmeter - restFromLast;
                             Transaction transaction = new Transaction();
                             transaction.amount = Math.Abs(prNegMeterCount);
                             transaction.sellerId = prPos.CopperID;
@@ -93,10 +95,9 @@ namespace SGT_logic
                             transaction.transactionType = "pr2pr";
                             prPosMeterCount -= Math.Abs(prNegMeterCount);
                             restFromLast = prPosMeterCount - Math.Abs(prNegMeterCount);
-                            //prNegMeterCount = 0;
                             allTransactions.Add(transaction);
                             tramsactionIdCounter++;
-                            transactionCounter++;
+                            prNegativeCounter++;
                         }
                         else if ((prPosMeterCount <= Math.Abs(prNegMeterCount)) && (prPosMeterCount != 0))
                         {
@@ -112,6 +113,7 @@ namespace SGT_logic
                             restFromLast = prPosMeterCount - Math.Abs(prNegMeterCount);
                             allTransactions.Add(transaction);
                             tramsactionIdCounter++;
+                            prNegativeCounter++;
                             break;
                         }
                         else
@@ -120,23 +122,28 @@ namespace SGT_logic
                         }
 
                     }
-                    continue;
+                    if(prNegativeCounter == negativeProsumers.Count)
+                    {
+                        break;
+                    }
+                    prPositiveCounter++;
                 }
 
 
                 List<Prosumer> restOfPrPos = new List<Prosumer>();
-                foreach (Prosumer pr in positiveProsumers.Skip(transactionCounter - 1))
+                foreach (Prosumer pr in positiveProsumers.Skip(prPositiveCounter))
                 {
                     restOfPrPos.Add(pr);
                 }
 
                 List<Prosumer> restOfPrNeg = new List<Prosumer>();
-                foreach (Prosumer pr in negativeProsumers.Skip(transactionCounter - 1))
+                foreach (Prosumer pr in negativeProsumers.Skip(prNegativeCounter))
                 {
                     restOfPrNeg.Add(pr);
                 }
 
-
+                int cookerAmount = village.CookerAmount;
+                int cookerCapacity = village.CookerCapacity;
 
                 // Selling/buying to/from village
                 if (village.VillageMeter > 0)
@@ -167,10 +174,10 @@ namespace SGT_logic
                 }
                 else if (village.VillageMeter < 0)
                 {
-                    foreach (Prosumer pr in restOfPrPos)
+                    foreach (Prosumer pr in restOfPrNeg)
                     {
                         Transaction tr = new Transaction();
-                        tr.amount = pr.smartmeter;
+                        tr.amount = Math.Abs(pr.smartmeter);
                         tr.sellerId = village.VillageID.ToString();
                         tr.buyerId = pr.CopperID;
                         tr.buyerType = pr.prosumerType;
@@ -184,10 +191,10 @@ namespace SGT_logic
 
 
                 //Selling/buying to/from national
-                int cookerAmount = village.CookerAmount;
-                int cookerCapacity = village.CookerCapacity;
-
-                if (village.VillageMeter > 0)
+                if (((cookerAmount - Math.Abs(village.VillageMeter)) > 0) && ((cookerAmount + village.VillageMeter) <= cookerCapacity))
+                {
+                }
+                else if (((cookerAmount - village.VillageMeter) > 0) && ((cookerAmount + village.VillageMeter) > cookerCapacity))
                 {
                     Transaction tr = new Transaction();
                     tr.amount = village.VillageMeter - (cookerCapacity - cookerAmount);
@@ -198,11 +205,15 @@ namespace SGT_logic
                     tr.transactionType = "village2Nation";
                     tr.transactionId = tramsactionIdCounter.ToString();
                     allTransactions.Add(tr);
+                    tramsactionIdCounter++;
                 }
-                else if (village.VillageMeter < 0)
+                else if (village.VillageMeter < 0 && Math.Abs(village.VillageMeter) < cookerAmount)
+                {
+                }
+                else if (village.VillageMeter < 0 && Math.Abs(village.VillageMeter) > cookerAmount)
                 {
                     Transaction tr = new Transaction();
-                    tr.amount = village.VillageMeter - cookerAmount;
+                    tr.amount = Math.Abs(village.VillageMeter) - cookerAmount;
                     tr.sellerId = nation.NationalID.ToString();
                     tr.buyerId = village.VillageID.ToString();
                     tr.buyerType = "village";
