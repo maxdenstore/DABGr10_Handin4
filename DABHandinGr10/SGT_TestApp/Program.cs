@@ -113,7 +113,7 @@ namespace SGT_TestApp
                 transactionId = "1",
                 amount = 100,
                 buyerId = "1",
-                buyerType = "prviat",
+                buyerType = "privat",
                 sellerId = "2",
                 sellerType = "privat",
                 transactionType = "upcomming"
@@ -123,7 +123,7 @@ namespace SGT_TestApp
                 transactionId = "2",
                 amount = 100,
                 buyerId = "21",
-                buyerType = "prviat",
+                buyerType = "privat",
                 sellerId = "23",
                 sellerType = "privat",
                 transactionType = "ongoing"
