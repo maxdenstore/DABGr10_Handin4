@@ -205,6 +205,7 @@ namespace SGT_logic
                     tr.transactionType = "village2Nation";
                     tr.transactionId = tramsactionIdCounter.ToString();
                     allTransactions.Add(tr);
+                    tramsactionIdCounter++;
                 }
                 else if (village.VillageMeter < 0 && Math.Abs(village.VillageMeter) < cookerAmount)
                 {
