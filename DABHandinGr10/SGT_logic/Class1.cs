@@ -223,9 +223,9 @@ namespace SGT_logic
         }
 
         
-        public int doTransaction(int transactionIdCounter, string villageName, string nationName)
+        public int doTransaction(int transactionIdCounter, string villageName)
         {
-            var tempTransactionIdCounter = transactionIdCounter;
+            var tempTransactionIdCounter = transactionIdCounter -1 ;
             Transaction tr = new Transaction();
             Prosumer prosumer1 = new Prosumer();
             Prosumer prosumer2 = new Prosumer();

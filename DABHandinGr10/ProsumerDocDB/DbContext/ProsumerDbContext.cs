@@ -40,7 +40,7 @@ namespace ProsumerDocDB.DbContext
         private async Task LoadDB()
         {
             client = new DocumentClient(new Uri(_endPointUrl), _PrimaryKey);
-            client.CreateDatabaseIfNotExistsAsync(new Database { Id = _Database });
+            await client.CreateDatabaseIfNotExistsAsync(new Database { Id = _Database });
             ProsumorCollection = client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(_Database), 
                 new DocumentCollection { Id = _Database}).Result;
 

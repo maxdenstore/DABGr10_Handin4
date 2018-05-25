@@ -15,6 +15,10 @@ namespace SGT_TestApp
     {
         static void Main(string[] args)
         {
+            ProsumerDocDB.DbContext.ProsumerDocumentDBUnitOfWork x = new ProsumerDocDB.DbContext
+                .ProsumerDocumentDBUnitOfWork(new ProsumerDocDB.DbContext.ProsumerDbContext());
+
+
             Class1 class1 = new Class1();
             Village village = new Village();
             National national = new National();
@@ -44,9 +48,13 @@ namespace SGT_TestApp
             prosumer4.wallet = 3;
 
             prosumers.Add(prosumer1);
+            x._prosumerRepository.AddProsumer(prosumer1).Wait();
             prosumers.Add(prosumer2);
+            x._prosumerRepository.AddProsumer(prosumer2).Wait();
             prosumers.Add(prosumer3);
+            x._prosumerRepository.AddProsumer(prosumer3).Wait();
             prosumers.Add(prosumer4);
+            x._prosumerRepository.AddProsumer(prosumer4).Wait();
 
             village.CookerAmount = 30;
             village.CookerCapacity = 32;
@@ -62,7 +70,9 @@ namespace SGT_TestApp
 
             class1.addTransactions(national);
 
-            /*Transaction trans = new Transaction
+            class1.doTransaction(4, "lol");
+
+            Transaction trans = new Transaction
             {
                 transactionId = "1",
                 amount = 100,
@@ -81,32 +91,32 @@ namespace SGT_TestApp
                 sellerId = "23",
                 sellerType = "privat",
                 transactionType = "ongoing"
-            };*/
+            };
 
 
 
 
 
-            SGT_DocDB.DBContext.SGT_DocDBUnitOfWork x =
-                new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
+            //SGT_DocDB.DBContext.SGT_DocDBUnitOfWork x =
+            //    new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
 
-            SGT_DocDB.DBContext.SGT_DocDBUnitOfWork y =
-                new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("onGoing"));
+            ////SGT_DocDB.DBContext.SGT_DocDBUnitOfWork y =
+            ////    new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("onGoing"));
 
-            /*x._SGT_Repository.AddTransaction(trans).Wait();
+            ////x._SGT_Repository.AddTransaction(trans).Wait();
 
-            //x._SGT_Repository.AddTransaction(trans).Wait();
+            ////x._SGT_Repository.AddTransaction(trans).Wait();
 
 
-            //x._SGT_Repository.DeleteTransaction(trans.transactionId);
+            ////x._SGT_Repository.DeleteTransaction(trans.transactionId);
 
-            y._SGT_Repository.AddTransaction(trans1).Wait();
+            ////y._SGT_Repository.AddTransaction(trans1).Wait();
 
-            var getTrans = y._SGT_Repository.GetTransactionById("2");
+            //var getTrans = x._SGT_Repository.GetTransactionById("0");
 
-            Console.WriteLine("transactionId: " + getTrans.transactionId + ", amount: " + getTrans.amount);
+            //Console.WriteLine("transactionId: " + getTrans.transactionId + ", amount: " + getTrans.amount);
 
-            y._SGT_Repository.DeleteTransaction("2");*/
+            ////y._SGT_Repository.DeleteTransaction("2");
 
         }
     }
