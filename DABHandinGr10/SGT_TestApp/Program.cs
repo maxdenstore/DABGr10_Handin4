@@ -133,7 +133,7 @@ namespace SGT_TestApp
             sgt_Logic transactioner = new sgt_Logic();
 
             transactioner.addTransactions(national);
-            transactioner.doTransaction(20, "Aros");
+            transactioner.doTransaction(45, "Aros");
 
 
             //SGT_DocDB.DBContext.SGT_DocDBUnitOfWork x =
