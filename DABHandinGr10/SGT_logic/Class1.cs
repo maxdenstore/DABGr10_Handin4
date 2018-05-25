@@ -28,13 +28,22 @@ namespace SGT_logic
          */
 
         private SGT_DocDB.DBContext.SGT_DocDBUnitOfWork x;
+        private SGT_DocDB.DBContext.SGT_DocDBUnitOfWork onGoing;
+        private SGT_DocDB.DBContext.SGT_DocDBUnitOfWork previous;
+        private ProsumerDocDB.DbContext.ProsumerDocumentDBUnitOfWork prosumerDB;
+        private UnitOfWork.SmartGridUnitOfWork unitOfWork; 
+
         private int tramsactionIdCounter = 0;
         private int prPositiveCounter = 0;
         private int prNegativeCounter = 0;
 
         public Class1()
         {
-            //x = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
+            x = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("upcomming"));
+            onGoing = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("onGoing"));
+            previous = new SGT_DocDB.DBContext.SGT_DocDBUnitOfWork(new SGT_DocDB.DBContext.SGTDBContext("previous"));
+            prosumerDB = new ProsumerDocDB.DbContext.ProsumerDocumentDBUnitOfWork(new ProsumerDocDB.DbContext.ProsumerDbContext());
+            unitOfWork = new UnitOfWork.SmartGridUnitOfWork();
         }
 
 
@@ -223,17 +232,80 @@ namespace SGT_logic
 
         }
 
-        /*
-        public int doTransaction(int tramsactionIdCounter)
+        
+        public int doTransaction(int transactionIdCounter, string villageName, string nationName)
         {
-            
+            var tempTransactionIdCounter = transactionIdCounter;
             Transaction tr = new Transaction();
-            tr = x._SGT_Repository.GetTransactionById(tramsactionIdCounter.ToString());
-            x._SGT_Repository.DeleteTransaction(tramsactionIdCounter.ToString());
-            x._SGT_Repository.AddTransaction(tr).Wait();
-            
+            Prosumer prosumer1 = new Prosumer();
+            Prosumer prosumer2 = new Prosumer();
+            var vil = new Village();
 
-        }*/
+            tr = x._SGT_Repository.GetTransactionById(tempTransactionIdCounter.ToString());
+
+            while (tr != null)
+            {
+                x._SGT_Repository.DeleteTransaction(tempTransactionIdCounter.ToString());
+
+                tempTransactionIdCounter--;
+
+                onGoing._SGT_Repository.AddTransaction(tr).Wait();
+                tr = onGoing._SGT_Repository.GetTransactionById(tr.transactionId);
+
+                switch (tr.transactionType)
+                {
+                    case "pr2pr":
+                        prosumer1 = prosumerDB._prosumerRepository.GetProsumerByCopperID(tr.buyerId);
+                        prosumer1.wallet = prosumer1.wallet - tr.amount;
+                        prosumer1.smartmeter = 0;
+                        prosumerDB._prosumerRepository.Update(prosumer1);
+                        prosumer2 = prosumerDB._prosumerRepository.GetProsumerByCopperID(tr.sellerId);
+                        prosumer2.wallet = prosumer2.wallet + tr.amount;
+                        prosumer2.smartmeter = 0;
+                        prosumerDB._prosumerRepository.Update(prosumer2);
+                        break;
+                    case "pr2Village":
+                        prosumer1 = prosumerDB._prosumerRepository.GetProsumerByCopperID(tr.sellerId);
+                        prosumer1.wallet = prosumer1.wallet - tr.amount;
+                        prosumer1.smartmeter = 0;
+                        prosumerDB._prosumerRepository.Update(prosumer1);
+                        vil = unitOfWork.ReadVillage(villageName);
+                        vil.CookerAmount = vil.CookerAmount + tr.amount;
+                        unitOfWork.UpdateVillage(vil);
+                        break;
+                    case "village2pr":
+                        prosumer1 = prosumerDB._prosumerRepository.GetProsumerByCopperID(tr.buyerId);
+                        prosumer1.wallet = prosumer1.wallet + tr.amount;
+                        prosumer1.smartmeter = 0;
+                        prosumerDB._prosumerRepository.Update(prosumer1);
+                        vil = unitOfWork.ReadVillage(villageName);
+                        vil.CookerAmount = vil.CookerAmount - tr.amount;
+                        unitOfWork.UpdateVillage(vil);
+                        break;
+                    case "village2Nation":
+                        vil = unitOfWork.ReadVillage(villageName);
+                        vil.CookerAmount = vil.CookerAmount - tr.amount;
+                        unitOfWork.UpdateVillage(vil);
+                        break;
+                    case "nation2Village":
+                        vil = unitOfWork.ReadVillage(villageName);
+                        vil.CookerAmount = vil.CookerAmount + tr.amount;
+                        unitOfWork.UpdateVillage(vil);
+                        break;
+                    default:
+                        break;
+                }
+                
+                previous._SGT_Repository.AddTransaction(tr).Wait();
+
+                onGoing._SGT_Repository.DeleteTransaction(tr.transactionId);
+
+                tr = x._SGT_Repository.GetTransactionById(tempTransactionIdCounter.ToString());
+            }
+
+
+            return 0;
+        }
     }
 
 }

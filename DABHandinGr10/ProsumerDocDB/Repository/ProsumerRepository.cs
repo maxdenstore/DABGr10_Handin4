@@ -44,6 +44,19 @@ namespace ProsumerDocDB.Repository
             return prosumer;
         }
 
+        public void Update(Prosumer prosumer)
+        {
+            Document doc = GetDoc(prosumer.CopperID);
+
+            doc.SetPropertyValue("wallet", prosumer.wallet);
+            doc.SetPropertyValue("smartmeter", prosumer.smartmeter);
+
+            if (doc != null)
+            {
+                _Context.client.ReplaceDocumentAsync(doc).Wait();
+            }
+        }
+
         public List<Prosumer> GetALL(string villageName)
         {
             var prosumers = _Context.client.CreateDocumentQuery<Prosumer>(_Context.ProsumorCollection.DocumentsLink).Where(x=> x.villageName == villageName)

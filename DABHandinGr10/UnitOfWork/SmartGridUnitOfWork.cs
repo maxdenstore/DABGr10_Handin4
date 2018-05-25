@@ -146,6 +146,12 @@ namespace UnitOfWork
             return village;
         }
 
+        public Prosumer ReadProsumer(string CopperID)
+        {
+            var prosumer = prosumerRepo.GetProsumerByCopperID(CopperID);
+            return prosumer;
+        }
+
         #endregion
 
 
@@ -179,6 +185,14 @@ namespace UnitOfWork
 
             return Updated;
         }
+
+        public Prosumer UpdateProsumer(Prosumer updated)
+        {
+            prosumerRepo.DeleteProsumer(updated.CopperID);
+            prosumerRepo.AddProsumer(updated).Wait();
+
+            return prosumerRepo.GetProsumerByCopperID(updated.CopperID);
+        }
         #endregion
 
         #region Delete
@@ -188,8 +202,9 @@ namespace UnitOfWork
         /// <param name="nationName">name to delete</param>
         public void DeleteNational(string nationName)
         {
-            var tempNations = nationalRepo.FindAsync(x => x.NationName == nationName).Result.ToList();
 
+            var tempNations = nationalRepo.FindAsync(x => x.NationName == nationName).Result.ToList();
+            
             if (tempNations.Count > 0)
             {
                 foreach (var VARIABLE in tempNations)
@@ -199,11 +214,6 @@ namespace UnitOfWork
 
                 nationalRepo.Save();
             }
-
-            //delete prosumers too DOCDB
-
-
-
         }
 
         public void DeleteVillage(string VillageName)
